@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>404 — Site Under Construction</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --accent: #ff3366;
+    --text: #e8e8ee;
+    --dim: #7a7a88;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    overflow-x: hidden;
+  }
+  .glitch {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(80px, 22vw, 240px);
+    line-height: 0.9;
+    margin: 0;
+    position: relative;
+    color: var(--text);
+    letter-spacing: -4px;
+  }
+  .glitch::before, .glitch::after {
+    content: '404';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    color: var(--text);
+    background: var(--bg);
+    overflow: hidden;
+  }
+  .glitch::before {
+    color: var(--accent);
+    animation: glitch1 2.5s infinite linear alternate-reverse;
+  }
+  .glitch::after {
+    color: #33e0ff;
+    animation: glitch2 3s infinite linear alternate-reverse;
+  }
+  @keyframes glitch1 {
+    0% { clip-path: inset(10% 0 60% 0); transform: translate(-4px, -2px); }
+    20% { clip-path: inset(70% 0 5% 0); transform: translate(3px, 1px); }
+    40% { clip-path: inset(30% 0 40% 0); transform: translate(-2px, 2px); }
+    60% { clip-path: inset(50% 0 20% 0); transform: translate(4px, -1px); }
+    80% { clip-path: inset(5% 0 80% 0); transform: translate(-3px, 3px); }
+    100% { clip-path: inset(40% 0 30% 0); transform: translate(2px, -2px); }
+  }
+  @keyframes glitch2 {
+    0% { clip-path: inset(60% 0 10% 0); transform: translate(3px, 2px); }
+    25% { clip-path: inset(15% 0 65% 0); transform: translate(-3px, -1px); }
+    50% { clip-path: inset(45% 0 25% 0); transform: translate(2px, 1px); }
+    75% { clip-path: inset(5% 0 85% 0); transform: translate(-4px, 2px); }
+    100% { clip-path: inset(70% 0 5% 0); transform: translate(4px, -3px); }
+  }
+  h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(18px, 3vw, 28px);
+    margin: 20px 0 10px;
+    color: var(--text);
+  }
+  p.sub {
+    color: var(--dim);
+    max-width: 480px;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0 auto 30px;
+  }
+  .panel {
+    margin-top: 30px;
+    border: 1px solid #24242e;
+    border-radius: 10px;
+    padding: 18px 26px;
+    background: #101018;
+    font-size: 13px;
+    color: var(--dim);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 260px;
+  }
+  .panel .row { display: flex; justify-content: space-between; gap: 20px; }
+  .panel .row span:last-child { color: var(--text); }
+  .visitor {
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--dim);
+  }
+  .visitor strong { color: var(--accent); }
+  footer {
+    margin-top: 40px;
+    font-size: 11px;
+    color: #4a4a55;
+  }
+</style>
+</head>
+<body>
+  <h1 class="glitch">404</h1>
+  <h2>Nothing to see here… yet.</h2>
+  <p class="sub">This portfolio is under reconstruction. Come back soon — in the meantime, enjoy some completely unnecessary but delightful stats about right now.</p>
+
+  <div class="panel">
+    <div class="row"><span>Date</span><span id="date">loading…</span></div>
+    <div class="row"><span>Local time</span><span id="time">loading…</span></div>
+    <div class="row"><span>Region</span><span id="region">loading…</span></div>
+    <div class="row"><span>Weather</span><span id="weather">loading…</span></div>
+  </div>
+
+  <p class="visitor">You are visitor <strong id="count">#…</strong> to grace this broken page.</p>
+
+  <footer>&copy; 2026 RAYNER DCUNHA — SITE OFFLINE FOR RENOVATIONS</footer>
+
+  <script>
+    const dateEl = document.getElementById('date');
+    const timeEl = document.getElementById('time');
+    const regionEl = document.getElementById('region');
+    const weatherEl = document.getElementById('weather');
+    const countEl = document.getElementById('count');
+
+    function updateClock() {
+      const now = new Date();
+      dateEl.textContent = now.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+      timeEl.textContent = now.toLocaleTimeString();
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    const weatherCodes = {
+      0: 'Clear sky', 1: 'Mostly clear', 2: 'Partly cloudy', 3: 'Overcast',
+      45: 'Fog', 48: 'Fog', 51: 'Light drizzle', 53: 'Drizzle', 55: 'Heavy drizzle',
+      61: 'Light rain', 63: 'Rain', 65: 'Heavy rain', 71: 'Light snow', 73: 'Snow',
+      75: 'Heavy snow', 80: 'Rain showers', 81: 'Rain showers', 82: 'Violent showers',
+      95: 'Thunderstorm', 96: 'Thunderstorm w/ hail', 99: 'Severe thunderstorm'
+    };
+
+    fetch('https://ipapi.co/json/')
+      .then(r => r.json())
+      .then(loc => {
+        const region = [loc.city, loc.region, loc.country_name].filter(Boolean).join(', ');
+        regionEl.textContent = region || 'Unknown';
+        if (loc.latitude && loc.longitude) {
+          return fetch(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`)
+            .then(r => r.json())
+            .then(w => {
+              const t = w.current?.temperature_2m;
+              const code = w.current?.weather_code;
+              const desc = weatherCodes[code] || 'Unknown';
+              weatherEl.textContent = t !== undefined ? `${t}°C, ${desc}` : desc;
+            });
+        }
+      })
+      .catch(() => {
+        regionEl.textContent = 'Unavailable';
+        weatherEl.textContent = 'Unavailable';
+      });
+
+    fetch('https://abacus.jasoncameron.dev/hit/rayner-dcunha-portfolio/visits')
+      .then(r => r.json())
+      .then(d => { countEl.textContent = '#' + d.value; })
+      .catch(() => { countEl.textContent = '#???'; });
+  </script>
+</body>
+</html>
