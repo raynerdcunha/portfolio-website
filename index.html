@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rayner's Domain</title>
+  <meta name="description" content="Rayner Dcunha — Computer Engineering co-op student at the University of Alberta building ML systems, full-stack web apps and systems software. Looking for a co-op/internship starting Winter 2027.">
+  <meta name="author" content="Rayner Dcunha">
+  <link rel="canonical" href="https://raynerdcunha.vercel.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Rayner's Domain">
+  <meta property="og:title" content="Rayner Dcunha | Rayner's Domain">
+  <meta property="og:description" content="Rayner Dcunha — Computer Engineering co-op student at the University of Alberta building ML systems, full-stack web apps and systems software. Looking for a co-op/internship starting Winter 2027.">
+  <meta property="og:url" content="https://raynerdcunha.vercel.app/">
+  <meta property="og:image" content="https://raynerdcunha.vercel.app/assets/images/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#05060d">
+  <link rel="icon" href="/assets/images/rd-logo.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script>
+    (function () {
+      var r = document.documentElement; r.classList.add('js');
+      var seen = false; try { seen = sessionStorage.getItem('rd-loader-seen') === '1'; } catch (e) {}
+      var rm = false; // site effects always run
+      var wiping = false; try { wiping = sessionStorage.getItem('rd-wipe') === '1'; } catch (e) {}
+      if (wiping && !rm) r.classList.add('is-wiping');
+      else if (!seen && !rm) r.classList.add('is-loading');
+    })();
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Person","name":"Rayner Dcunha","url":"https://raynerdcunha.vercel.app/",
+   "email":"mailto:rdcunha@ualberta.ca","jobTitle":"Computer Engineering Co-op Student",
+   "affiliation":{"@type":"CollegeOrUniversity","name":"University of Alberta"},
+   "sameAs":["https://github.com/raynerdcunha","https://www.linkedin.com/in/raynerdcunha","https://leetcode.com/u/raynerdcunha"]}
+  </script>
+</head>
+<body>
+  <div class="loader" aria-hidden="true"><span class="loader__mark grad-text">RD</span></div>
+  <div class="wipe" aria-hidden="true"></div>
+  <div class="space" aria-hidden="true"><canvas id="space-network" aria-hidden="true"></canvas></div>
+
+  <header class="taskbar">
+    <div class="taskbar__inner">
+      <a class="logo" href="/" aria-label="Home">
+        <span class="logo__mark">RD</span>
+      </a>
+      <nav class="taskbar__nav" aria-label="Main">
+        <span class="taskbar__indicator" aria-hidden="true"></span>
+        <ol class="taskbar__list">
+        <li><a class="taskbar__link" href="/" aria-current="page"><span class="taskbar__num">01</span>Home</a></li>
+        <li><a class="taskbar__link" href="/experience"><span class="taskbar__num">02</span>Experience</a></li>
+        <li><a class="taskbar__link" href="/projects"><span class="taskbar__num">03</span>Projects</a></li>
+        <li><a class="taskbar__link" href="/skills"><span class="taskbar__num">04</span>Skills</a></li>
+        <li><a class="taskbar__link" href="/contact"><span class="taskbar__num">05</span>Contact</a></li>
+        </ol>
+      </nav>
+      <div class="taskbar__right">
+        <span class="taskbar__status"><span class="pulse" aria-hidden="true"></span>Co-Op / Internship · Winter 2027</span>
+        <a class="taskbar__resume magnetic" href="/assets/resume/Rayner_Dcunha_Resume.pdf" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span><span class="visually-hidden">(PDF, opens in a new tab)</span></a>
+      </div>
+    </div>
+    <div class="progress" aria-hidden="true"><span></span></div>
+  </header>
+
+  <main id="main" class="main">
+    <section class="home" aria-labelledby="home-title">
+      <div>
+        <p class="hud">System online · Rayner's Domain</p>
+        <h1 id="home-title" class="home__name"><span class="split">Rayner</span><br><span class="split grad-text">Dcunha</span></h1>
+        <p class="home__role">I build <span class="typed" data-typed="AI/ML systems|frontends people enjoy|backends that scale|tools people actually use">AI/ML systems</span></p>
+        <p class="home__pitch">
+          Computer Engineering co-op student at the University of Alberta.
+          I like turning ideas into working software — from AI/ML models to the frontends and backends people actually use.
+        </p>
+        <div class="home__actions">
+          <a class="btn btn--neon magnetic" href="/projects">Explore my projects <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn magnetic" href="/assets/resume/Rayner_Dcunha_Resume.pdf" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span></a>
+          <a class="btn magnetic" href="/contact">Contact</a>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <div class="tz-panel" aria-label="My local time and weather next to yours">
+          <div class="tz-card glass" data-side="me">
+            <p class="tz-label">Me · <span data-part="city">Edmonton, AB</span></p>
+            <p class="tz-time" data-part="time">--:--</p>
+            <p class="tz-weather"><span class="tz-icon" data-part="icon" aria-hidden="true">·</span><span class="tz-temp" data-part="temp">…</span><span class="tz-cond" data-part="cond">Loading</span></p>
+            <p class="tz-day" data-part="day">&nbsp;</p>
+          </div>
+          <div class="tz-card glass" data-side="you">
+            <p class="tz-label">You · <span data-part="city">Your area</span></p>
+            <p class="tz-time" data-part="time">--:--</p>
+            <p class="tz-weather"><span class="tz-icon" data-part="icon" aria-hidden="true">·</span><span class="tz-temp" data-part="temp">…</span><span class="tz-cond" data-part="cond">Loading</span></p>
+            <p class="tz-day" data-part="day">&nbsp;</p>
+          </div>
+          <p class="tz-gap"><span class="tz-line" aria-hidden="true"></span><span data-part="gap">&nbsp;</span></p>
+        </div>
+      <aside class="profile glass" aria-label="Quick profile">
+        <div class="profile__bar" aria-hidden="true"><span></span><span></span><span></span><b>profile.sys</b></div>
+        <dl class="profile__rows">
+          <div class="profile__row"><dt>STATUS</dt><dd><span class="online">● Seeking Co-Op / Internship</span><small>Starting Winter 2027</small></dd></div>
+          <div class="profile__row"><dt>PROGRAM</dt><dd>Computer Engineering Co-op<small>University of Alberta · Grad 2028</small></dd></div>
+          <div class="profile__row"><dt>FOCUS</dt><dd>AI/ML · Frontend · Backend</dd></div>
+          <div class="profile__row"><dt>LAST ROLE</dt><dd>AI/ML Research Assistant Intern<small>UAlberta ECE · Jan – Aug 2026</small></dd></div>
+          <div class="profile__row"><dt>STACK</dt><dd>Python · JS · C · SQL · Kotlin · FastAPI · Node.js</dd></div>
+          <div class="profile__row"><dt>NOW</dt><dd>VP Finance, CompE Club<small>EcoCar electrical crew · SU tutor</small></dd></div>
+        </dl>
+      </aside>
+      </div>
+    </section>
+
+    <svg class="beams" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+      <defs><linearGradient id="beam-g" x1="0" x2="1"><stop offset="0" stop-color="#22e3ff" stop-opacity="0"/><stop offset=".5" stop-color="#22e3ff"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></linearGradient></defs>
+      <path class="beam beam--1" d="M0,150 C200,40 400,200 600,110 S1000,30 1200,120"/>
+      <path class="beam beam--2" d="M0,90 C250,190 450,30 650,140 S1000,200 1200,70"/>
+      <path class="beam beam--3" d="M0,190 C300,120 500,170 700,60 S1050,150 1200,180"/>
+    </svg>
+
+    <ul class="stats" aria-label="Highlights">
+      <li class="stat glass glass--glow reveal"><span class="stat__num grad-text" data-count="31" data-suffix="%">31%</span><span class="stat__label">average simulated power-loss reduction from my research model</span></li>
+      <li class="stat glass glass--glow reveal" style="--d:.08s"><span class="stat__num grad-text" data-count="103" data-suffix="×">103×</span><span class="stat__label">faster grid decisions — 83 minutes of brute force down to 48 seconds</span></li>
+      <li class="stat glass glass--glow reveal" style="--d:.16s"><span class="stat__num grad-text" data-count="179" data-suffix="">179</span><span class="stat__label">LeetCode problems solved — 124 Python algorithms, 55 SQL</span></li>
+    </ul>
+
+
+
+    <div class="marquee" aria-label="Tech I work with">
+      <div class="marquee__track">
+        <span>Python</span><span>Graph Neural Networks</span><span>FastAPI</span><span>JS</span><span>Node.js</span><span>C</span><span>Linux</span><span>SQL</span><span>Neo4j</span><span>Kotlin</span><span>Jetpack Compose</span><span>LLM Agents</span><span>STM32</span><span>Git</span>
+        <span aria-hidden="true">Python</span><span aria-hidden="true">Graph Neural Networks</span><span aria-hidden="true">FastAPI</span><span aria-hidden="true">JS</span><span aria-hidden="true">Node.js</span><span aria-hidden="true">C</span><span aria-hidden="true">Linux</span><span aria-hidden="true">SQL</span><span aria-hidden="true">Neo4j</span><span aria-hidden="true">Kotlin</span><span aria-hidden="true">Jetpack Compose</span><span aria-hidden="true">LLM Agents</span><span aria-hidden="true">STM32</span><span aria-hidden="true">Git</span>
+      </div>
+    </div>
+
+    <nav class="sectors" aria-label="Explore the domain">
+      <a class="sector glass glass--glow reveal" href="/experience"><span class="sector__num">02 / EXPERIENCE</span><span class="sector__title">Research &amp; roles <span aria-hidden="true">→</span></span><p class="sector__text">Two research positions and seven leadership roles.</p></a>
+      <a class="sector glass glass--glow reveal" style="--d:.06s" href="/projects"><span class="sector__num">03 / PROJECTS</span><span class="sector__title">Things I built <span aria-hidden="true">→</span></span><p class="sector__text">ML, systems, web, Android and hardware.</p></a>
+      <a class="sector glass glass--glow reveal" style="--d:.12s" href="/skills"><span class="sector__num">04 / SKILLS</span><span class="sector__title">Knowledge graph <span aria-hidden="true">→</span></span><p class="sector__text">26 skills, each linked to where I used it.</p></a>
+      <a class="sector glass glass--glow reveal" style="--d:.18s" href="/contact"><span class="sector__num">05 / CONTACT</span><span class="sector__title">Say hello <span aria-hidden="true">→</span></span><p class="sector__text">Form, email, LinkedIn, GitHub.</p></a>
+    </nav>
+
+    <footer class="footer">
+      <span>Copyright © <span id="year">2026</span> Rayner Dcunha</span>
+    </footer>
+  </main>
+  <script src="/assets/vendor/gsap.min.js" defer></script>
+  <script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/site-shell.js" defer></script>
+  <script src="/assets/js/motion.js" defer></script>
+  <script src="/assets/js/space-network.js" defer></script>
+  <script src="/assets/js/time-weather.js" defer></script>
+</body>
+</html>

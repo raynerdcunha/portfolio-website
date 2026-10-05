@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300" role="img" aria-label="Rayner's Domain — portfolio of Rayner Dcunha">
+  <defs>
+    <linearGradient id="grad" x1="0" x2="1">
+      <stop offset="0" stop-color="#22e3ff"/>
+      <stop offset="0.55" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#ff5fd2"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="0" x2="1">
+      <stop offset="0" stop-color="#22e3ff" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#22e3ff"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="glowL" cx="0.1" cy="0" r="0.7">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowR" cx="1" cy="1" r="0.7">
+      <stop offset="0" stop-color="#22e3ff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#22e3ff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#94a3ff" stroke-opacity="0.08"/>
+    </pattern>
+    <filter id="soft"><feGaussianBlur stdDeviation="3"/></filter>
+  </defs>
+
+  <!-- background -->
+  <rect width="1200" height="300" rx="22" fill="#05060d"/>
+  <rect width="1200" height="300" rx="22" fill="url(#grid)"/>
+  <rect width="1200" height="300" rx="22" fill="url(#glowL)"/>
+  <rect width="1200" height="300" rx="22" fill="url(#glowR)"/>
+  <rect x="1" y="1" width="1198" height="298" rx="21" fill="none" stroke="url(#grad)" stroke-opacity="0.6" stroke-width="2"/>
+
+  <!-- flowing beams -->
+  <g fill="none" stroke="url(#beam)" stroke-width="2" stroke-linecap="round">
+    <path d="M0 250 C200 170 400 290 600 220 S1000 160 1200 240" stroke-dasharray="180 1100">
+      <animate attributeName="stroke-dashoffset" from="1280" to="0" dur="6s" repeatCount="indefinite"/>
+    </path>
+    <path d="M0 200 C260 280 460 160 660 250 S1000 280 1200 190" stroke-dasharray="120 1200" opacity="0.7">
+      <animate attributeName="stroke-dashoffset" from="1320" to="0" dur="9s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- mini knowledge graph (right) -->
+  <g stroke="#94a3ff" stroke-opacity="0.35" stroke-width="1.5">
+    <line x1="940" y1="90" x2="1020" y2="60"/><line x1="940" y1="90" x2="1030" y2="140"/>
+    <line x1="1030" y1="140" x2="1110" y2="100"/><line x1="1020" y1="60" x2="1110" y2="100"/>
+    <line x1="1030" y1="140" x2="980" y2="190"/><line x1="1110" y1="100" x2="1120" y2="180"/>
+  </g>
+  <g>
+    <circle cx="940" cy="90" r="9" fill="#22e3ff"><animate attributeName="r" values="9;11;9" dur="3s" repeatCount="indefinite"/></circle>
+    <circle cx="1020" cy="60" r="6" fill="#a78bfa"/>
+    <circle cx="1030" cy="140" r="12" fill="#ff5fd2"><animate attributeName="r" values="12;14;12" dur="4s" repeatCount="indefinite"/></circle>
+    <circle cx="1110" cy="100" r="8" fill="#60a5fa"/>
+    <circle cx="980" cy="190" r="6" fill="#6ee7b7"/>
+    <circle cx="1120" cy="180" r="7" fill="#22e3ff"/>
+  </g>
+  <g filter="url(#soft)" opacity="0.6">
+    <circle cx="940" cy="90" r="9" fill="#22e3ff"/><circle cx="1030" cy="140" r="12" fill="#ff5fd2"/>
+  </g>
+
+  <!-- RD mark -->
+  <g transform="translate(70 70)">
+    <rect width="64" height="64" rx="15" fill="#0a0c1a" stroke="url(#grad)" stroke-width="2.5"/>
+    <g fill="none" stroke="url(#grad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 46 V18 H22 a7 7 0 0 1 0 14 H13"/><path d="M21 32 L29 46"/>
+      <path d="M36 18 V46 H40 a11 14 0 0 0 0 -28 Z"/>
+    </g>
+  </g>
+
+  <!-- text -->
+  <text x="152" y="96" font-family="Consolas, 'SFMono-Regular', Menlo, monospace" font-size="15" letter-spacing="3" fill="#22e3ff">SYSTEM ONLINE · PORTFOLIO</text>
+  <text x="152" y="122" font-family="Consolas, 'SFMono-Regular', Menlo, monospace" font-size="13" fill="#6b7399">raynerdcunha.vercel.app</text>
+  <text x="70" y="200" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="62" font-weight="700" letter-spacing="-1.5" fill="#e9ecff">Rayner's <tspan fill="url(#grad)">Domain</tspan><tspan fill="#22e3ff" font-weight="400">_<animate attributeName="fill-opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1s" repeatCount="indefinite"/></tspan></text>
+  <text x="72" y="240" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#9aa3c7">Computer Engineering co-op · University of Alberta · AI/ML · Frontend · Backend</text>
+
+</svg>

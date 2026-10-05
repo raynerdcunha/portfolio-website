@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rayner's Domain</title>
+  <meta name="description" content="Rayner Dcunha's experience: AI/ML Research Assistant Intern and Dean's Research Award Research Assistant at the University of Alberta, plus leadership roles.">
+  <meta name="author" content="Rayner Dcunha">
+  <link rel="canonical" href="https://raynerdcunha.vercel.app/experience">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Rayner's Domain">
+  <meta property="og:title" content="Rayner Dcunha | Rayner's Domain">
+  <meta property="og:description" content="Rayner Dcunha's experience: AI/ML Research Assistant Intern and Dean's Research Award Research Assistant at the University of Alberta, plus leadership roles.">
+  <meta property="og:url" content="https://raynerdcunha.vercel.app/experience">
+  <meta property="og:image" content="https://raynerdcunha.vercel.app/assets/images/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#05060d">
+  <link rel="icon" href="/assets/images/rd-logo.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script>
+    (function () {
+      var r = document.documentElement; r.classList.add('js');
+      var seen = false; try { seen = sessionStorage.getItem('rd-loader-seen') === '1'; } catch (e) {}
+      var rm = false; // site effects always run
+      var wiping = false; try { wiping = sessionStorage.getItem('rd-wipe') === '1'; } catch (e) {}
+      if (wiping && !rm) r.classList.add('is-wiping');
+      else if (!seen && !rm) r.classList.add('is-loading');
+    })();
+  </script>
+</head>
+<body>
+  <div class="loader" aria-hidden="true"><span class="loader__mark grad-text">RD</span></div>
+  <div class="wipe" aria-hidden="true"></div>
+  <div class="space" aria-hidden="true"></div>
+
+  <header class="taskbar">
+    <div class="taskbar__inner">
+      <a class="logo" href="/" aria-label="Home">
+        <span class="logo__mark">RD</span>
+      </a>
+      <nav class="taskbar__nav" aria-label="Main">
+        <span class="taskbar__indicator" aria-hidden="true"></span>
+        <ol class="taskbar__list">
+        <li><a class="taskbar__link" href="/"><span class="taskbar__num">01</span>Home</a></li>
+        <li><a class="taskbar__link" href="/experience" aria-current="page"><span class="taskbar__num">02</span>Experience</a></li>
+        <li><a class="taskbar__link" href="/projects"><span class="taskbar__num">03</span>Projects</a></li>
+        <li><a class="taskbar__link" href="/skills"><span class="taskbar__num">04</span>Skills</a></li>
+        <li><a class="taskbar__link" href="/contact"><span class="taskbar__num">05</span>Contact</a></li>
+        </ol>
+      </nav>
+      <div class="taskbar__right">
+        <span class="taskbar__status"><span class="pulse" aria-hidden="true"></span>Co-Op / Internship · Winter 2027</span>
+        <a class="taskbar__resume magnetic" href="/assets/resume/Rayner_Dcunha_Resume.pdf" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span><span class="visually-hidden">(PDF, opens in a new tab)</span></a>
+      </div>
+    </div>
+    <div class="progress" aria-hidden="true"><span></span></div>
+  </header>
+
+  <main id="main" class="main">
+    <header class="page-head">
+      <p class="hud">02 · Experience</p>
+      <h1 class="page-title">Where I've <span class="grad-text">shipped</span></h1>
+      <p class="page-lead">Research that turned into real, measurable software — plus the clubs and teams I help run.</p>
+    </header>
+
+    <div class="exp">
+      <ol class="timeline">
+        <li class="job glass glass--glow reveal">
+          <div class="job__top"><h2 class="job__role">AI/ML Research Assistant Intern</h2><span class="job__dates">JAN – AUG 2026</span></div>
+          <p class="job__org">Dept. of Electrical &amp; Computer Engineering · University of Alberta · Edmonton, AB</p>
+          <ul class="job__points">
+            <li>Built reinforcement-learning models, then a Graph-Transformer surrogate for power-grid reconfiguration that cut simulated power loss by <span class="hl">31% on average</span> (up to 34%) — within 0.16% of the exhaustive optimum.</li>
+            <li>Built an MCP-based agentic LLM web app (FastAPI, JS, REST APIs) reaching <span class="hl">95.7% routing accuracy</span>.</li>
+            <li>Kept API keys out of source control; used Claude Code and Copilot for daily debugging.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies"><li>Graph Transformers</li><li>Reinforcement Learning</li><li>FastAPI</li><li>JS</li><li>LLM Agents</li></ul>
+        </li>
+        <li class="job glass glass--glow reveal" style="--d:.08s">
+          <div class="job__top"><h2 class="job__role">Dean's Research Award Research Assistant</h2><span class="job__dates">JAN – APR 2025</span></div>
+          <p class="job__org">Faculty of Engineering · University of Alberta · Edmonton, AB</p>
+          <ul class="job__points">
+            <li>Selected for the competitive Dean's Research Award to build a Neo4j knowledge graph of researchers, papers and institutions, loading nodes and relationships from CSV with Cypher (<code>LOAD CSV</code>, <code>MERGE</code>) via Python.</li>
+            <li>Built a menu-driven Python tool with Cypher queries to count nodes and relations, find nodes sharing relationships or common objects, and compare pairs of nodes.</li>
+            <li>Detected <span class="hl">overlapping research disciplines</span> across related researchers and papers, generated society and community nodes, exported results to CSV, and presented at a faculty-wide poster session.</li>
+          </ul>
+          <ul class="chips" aria-label="Technologies"><li>Python</li><li>Neo4j</li><li>Cypher</li><li>CSV pipelines</li></ul>
+        </li>
+      </ol>
+
+      <aside>
+        <h2 class="side-title">Leadership &amp; involvement</h2>
+        <ul class="roles">
+          <li class="role glass glass--glow reveal"><span class="role__title">Vice President Finance</span><span class="role__org"><a href="https://www.compeclub.com/" target="_blank" rel="noopener">Computer Engineering Club ↗</a> — runs HackED, workshops and career events</span><span class="role__dates">MAY 2026 – NOW</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Electrical Crew Member</span><span class="role__org"><a href="https://www.ualberta-ecocar.ca/" target="_blank" rel="noopener">EcoCar ↗</a> — hydrogen fuel-cell cars for Shell Eco-marathon; STM32 &amp; PCB design</span><span class="role__dates">MAY 2026 – NOW</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Junior Leader</span><span class="role__org"><a href="https://www.ualberta.ca/en/engineering/community-giving/student-involvement/student-engagement-leadership-program.html" target="_blank" rel="noopener">Student Engagement Leadership Program ↗</a> — orientation, wellness &amp; transition</span><span class="role__dates">MAY 2026 – NOW</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Student Tutor</span><span class="role__org"><a href="https://www2.su.ualberta.ca/services/infolink/tutor/registry/tutor/1423/" target="_blank" rel="noopener">Students' Union Tutor Registry ↗</a> — 20+ sessions: circuits, calculus, data structures</span><span class="role__dates">SEP 2025 – NOW</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Director of Auditing &amp; Finance</span><span class="role__org"><a href="https://www.essualberta.ca/" target="_blank" rel="noopener">Engineering Students' Society ↗</a> — financial operations and auditing</span><span class="role__dates">JAN – APR 2026</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Funding Coordinator</span><span class="role__org"><a href="https://www.essualberta.ca/" target="_blank" rel="noopener">Engineering Students' Society ↗</a> — funding allocation for student initiatives</span><span class="role__dates">JAN – APR 2026</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Junior Executive (External)</span><span class="role__org"><a href="https://www.compeclub.com/" target="_blank" rel="noopener">Computer Engineering Club ↗</a> — external relations &amp; outreach</span><span class="role__dates">JAN – APR 2026</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Organizer &amp; Project Judge</span><span class="role__org"><a href="https://hacked.compeclub.com/" target="_blank" rel="noopener">HackED 2026 ↗</a> — 500+ student hackathon</span><span class="role__dates">JAN – FEB 2026</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Finance Coordinator</span><span class="role__org"><a href="https://www.essualberta.ca/" target="_blank" rel="noopener">Engineering Students' Society ↗</a> — reimbursements, bookkeeping, funding</span><span class="role__dates">OCT – DEC 2025</span></li>
+        </ul>
+      </aside>
+    </div>
+
+    <section class="awards" aria-labelledby="awards-title">
+      <h2 id="awards-title" class="awards__title">Awards &amp; scholarships</h2>
+      <ul class="awards__list">
+        <li class="award-card glass glass--glow reveal"><span class="award-card__year">2025</span><span class="award-card__name">Dean's Research Award</span><span class="award-card__org">Faculty of Engineering, University of Alberta</span></li>
+        <li class="award-card glass glass--glow reveal"><span class="award-card__year">2023</span><span class="award-card__name">International Admission Scholarship</span><span class="award-card__org">University of Alberta</span></li>
+        <li class="award-card glass glass--glow reveal"><span class="award-card__year">2023</span><span class="award-card__name">Regional Excellence Scholarship</span><span class="award-card__org">University of Alberta</span></li>
+        <li class="award-card glass glass--glow reveal"><span class="award-card__year">2023</span><span class="award-card__name">Iron Standard Entrance Scholarship</span><span class="award-card__org">Faculty of Engineering</span></li>
+      </ul>
+    </section>
+
+    <footer class="footer">
+      <span>Copyright © <span id="year">2026</span> Rayner Dcunha</span>
+    </footer>
+  </main>
+  <script src="/assets/vendor/gsap.min.js" defer></script>
+  <script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/site-shell.js" defer></script>
+  <script src="/assets/js/motion.js" defer></script>
+</body>
+</html>

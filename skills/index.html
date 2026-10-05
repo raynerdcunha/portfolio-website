@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rayner's Domain</title>
+  <meta name="description" content="Rayner Dcunha's skills as an interactive knowledge graph: Python, JS, C, SQL, FastAPI, GNNs, LLM agents and more — each linked to real projects.">
+  <meta name="author" content="Rayner Dcunha">
+  <link rel="canonical" href="https://raynerdcunha.vercel.app/skills">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Rayner's Domain">
+  <meta property="og:title" content="Rayner Dcunha | Rayner's Domain">
+  <meta property="og:description" content="Rayner Dcunha's skills as an interactive knowledge graph: Python, JS, C, SQL, FastAPI, GNNs, LLM agents and more — each linked to real projects.">
+  <meta property="og:url" content="https://raynerdcunha.vercel.app/skills">
+  <meta property="og:image" content="https://raynerdcunha.vercel.app/assets/images/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#05060d">
+  <link rel="icon" href="/assets/images/rd-logo.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script>
+    (function () {
+      var r = document.documentElement; r.classList.add('js');
+      var seen = false; try { seen = sessionStorage.getItem('rd-loader-seen') === '1'; } catch (e) {}
+      var rm = false; // site effects always run
+      var wiping = false; try { wiping = sessionStorage.getItem('rd-wipe') === '1'; } catch (e) {}
+      if (wiping && !rm) r.classList.add('is-wiping');
+      else if (!seen && !rm) r.classList.add('is-loading');
+    })();
+  </script>
+</head>
+<body>
+  <div class="loader" aria-hidden="true"><span class="loader__mark grad-text">RD</span></div>
+  <div class="wipe" aria-hidden="true"></div>
+  <div class="space" aria-hidden="true"></div>
+
+  <header class="taskbar">
+    <div class="taskbar__inner">
+      <a class="logo" href="/" aria-label="Home">
+        <span class="logo__mark">RD</span>
+      </a>
+      <nav class="taskbar__nav" aria-label="Main">
+        <span class="taskbar__indicator" aria-hidden="true"></span>
+        <ol class="taskbar__list">
+        <li><a class="taskbar__link" href="/"><span class="taskbar__num">01</span>Home</a></li>
+        <li><a class="taskbar__link" href="/experience"><span class="taskbar__num">02</span>Experience</a></li>
+        <li><a class="taskbar__link" href="/projects"><span class="taskbar__num">03</span>Projects</a></li>
+        <li><a class="taskbar__link" href="/skills" aria-current="page"><span class="taskbar__num">04</span>Skills</a></li>
+        <li><a class="taskbar__link" href="/contact"><span class="taskbar__num">05</span>Contact</a></li>
+        </ol>
+      </nav>
+      <div class="taskbar__right">
+        <span class="taskbar__status"><span class="pulse" aria-hidden="true"></span>Co-Op / Internship · Winter 2027</span>
+        <a class="taskbar__resume magnetic" href="/assets/resume/Rayner_Dcunha_Resume.pdf" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span><span class="visually-hidden">(PDF, opens in a new tab)</span></a>
+      </div>
+    </div>
+    <div class="progress" aria-hidden="true"><span></span></div>
+  </header>
+
+  <main id="main" class="main">
+    <header class="page-head">
+      <p class="hud">04 · Skills</p>
+      <h1 class="page-title">The <span class="grad-text">knowledge graph</span></h1>
+      <p class="page-lead">Every node is backed by a project, job or course. Drag the nodes around, hover one to see where I used it, and click a category to hide it.</p>
+    </header>
+
+    <div class="skills skills-layout" data-view="graph">
+      <div class="graph-panel glass">
+        <svg id="skills-graph" class="skills__graph" role="img" aria-labelledby="skills-graph-desc"></svg>
+        <span id="skills-graph-desc" class="visually-hidden">Knowledge graph of 26 skills in five clusters. The same information is in the List view.</span>
+        <div id="skills-list" class="skills__list"></div>
+      </div>
+      <aside class="side-panel glass">
+        <div class="view-switch" role="group" aria-label="Choose view">
+          <button type="button" class="view-switch__btn" data-view="graph" aria-pressed="true">Graph</button>
+          <button type="button" class="view-switch__btn" data-view="list" aria-pressed="false">List</button>
+        </div>
+        <button type="button" class="graph-reset">↺ Reset layout</button>
+        <div class="skill-info" aria-live="polite"><p class="skill-info__hint">&gt; hover a node to inspect</p></div>
+        <ul id="skills-legend" class="legend" aria-label="Legend"></ul>
+      </aside>
+    </div>
+
+    <h2 class="certs-title">Certifications</h2>
+    <ul class="certs">
+      <li class="cert glass glass--glow reveal" data-cluster="ai"><span class="cert__tag">AI / ML</span><span class="cert__name">OCI AI Foundations Associate</span><span class="cert__issuer">Oracle · Oct 2025 · valid to Oct 2027</span></li>
+      <li class="cert glass glass--glow reveal" data-cluster="ai"><span class="cert__tag">AI / ML</span><span class="cert__name">AI Agents and Agentic AI in Python</span><span class="cert__issuer">Vanderbilt University · Feb 2026</span></li>
+      <li class="cert glass glass--glow reveal" data-cluster="ai"><span class="cert__tag">AI / ML</span><span class="cert__name">Retrieval Augmented Generation (RAG)</span><span class="cert__issuer">DeepLearning.AI · Jan 2026</span></li>
+      <li class="cert glass glass--glow reveal" data-cluster="ai"><span class="cert__tag">AI / ML</span><span class="cert__name">AI For Everyone</span><span class="cert__issuer">DeepLearning.AI · Mar 2026</span></li>
+      <li class="cert glass glass--glow reveal" data-cluster="systems"><span class="cert__tag">Systems &amp; Tools</span><span class="cert__name">Git Version Control for Beginners</span><span class="cert__issuer">CodeSignal · Sep 2025</span></li>
+    </ul>
+
+    <footer class="footer">
+      <span>Copyright © <span id="year">2026</span> Rayner Dcunha</span>
+    </footer>
+  </main>
+  <script src="/assets/vendor/gsap.min.js" defer></script>
+  <script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/js/site-shell.js" defer></script>
+  <script src="/assets/js/motion.js" defer></script>
+  <script src="/assets/js/skills-data.js" defer></script>
+  <script src="/assets/js/skills-graph.js" defer></script>
+</body>
+</html>

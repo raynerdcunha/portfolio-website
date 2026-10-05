@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rayner's Domain</title>
+  <meta name="description" content="Page not found.">
+  <meta name="author" content="Rayner Dcunha">
+  <meta name="robots" content="noindex">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Rayner's Domain">
+  <meta property="og:title" content="Rayner Dcunha | Rayner's Domain">
+  <meta property="og:description" content="Page not found.">
+  <meta property="og:url" content="https://raynerdcunha.vercel.app/404">
+  <meta property="og:image" content="https://raynerdcunha.vercel.app/assets/images/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#05060d">
+  <link rel="icon" href="/assets/images/rd-logo.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script>
+    (function () {
+      var r = document.documentElement; r.classList.add('js');
+      var seen = false; try { seen = sessionStorage.getItem('rd-loader-seen') === '1'; } catch (e) {}
+      var rm = false; // site effects always run
+      var wiping = false; try { wiping = sessionStorage.getItem('rd-wipe') === '1'; } catch (e) {}
+      if (wiping && !rm) r.classList.add('is-wiping');
+      else if (!seen && !rm) r.classList.add('is-loading');
+    })();
+  </script>
+</head>
+<body>
+  <div class="space" aria-hidden="true"></div>
+  <main class="lost page-in">
+    <div>
+      <p class="hud" style="justify-content:center">Signal lost</p>
+      <p class="lost__code grad-text">404</p>
+      <h1 class="page-title">Lost in the Domain?</h1>
+      <div class="lost__term glass"><span class="p">guest@raynersdomain</span>:~$ cd <span id="missing">this-page</span><br>bash: cd: no such file or directory</div>
+      <div class="home__actions" style="justify-content:center">
+        <a class="btn btn--neon magnetic" href="/">Return to home <span class="arrow" aria-hidden="true">→</span></a>
+        <a class="btn magnetic" href="/projects">See projects</a>
+      </div>
+    </div>
+  </main>
+  <script>var m=document.getElementById('missing'); if(m) m.textContent=location.pathname.replace(/^\//,'')||'this-page';</script>
+</body>
+</html>
