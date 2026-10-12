@@ -1,6 +1,9 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/resume", "destination": "/assets/resume/Rayner_Dcunha_Resume.pdf" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -16,6 +19,13 @@
     },
     {
       "source": "/assets/resume/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+        { "key": "Content-Disposition", "value": "inline; filename=\"Rayner_Dcunha_Resume.pdf\"" }
+      ]
+    },
+    {
+      "source": "/resume",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
         { "key": "Content-Disposition", "value": "inline; filename=\"Rayner_Dcunha_Resume.pdf\"" }
