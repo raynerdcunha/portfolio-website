@@ -29,7 +29,7 @@ It's a dark, animated, multi-page static site with **no framework and no build s
 
 - **Interactive skills knowledge graph**: a live physics simulation written from scratch (no graph library). Drag nodes, hover to see where a skill was used, click a category to hide it.
 - **Serverless contact form**: Google Apps Script emails each message to you and sends the visitor a confirmation. No backend server, and visitors don't sign in.
-- **Live LeetCode stat**: a small Vercel serverless function (`api/leetcode.js`) reads the public solved counts and caches them for 3 minutes. If it can't reach LeetCode, the page keeps its built-in fallback numbers.
+- **Live LeetCode stat**: a small Vercel serverless function (`api/leetcode.js`) reads the public solved counts and caches them for 3 minutes. The home page shows the total, the easy/medium/hard split and a colored ring, and links to the profile. If it can't reach LeetCode, the page keeps its built-in fallback numbers.
 - **"My side / your side" panel**: the owner's local time and weather next to the visitor's ([Open-Meteo](https://open-meteo.com), free, no API key, no location prompt).
 - **GSAP motion**: page-wipe transitions, decode-text intro, scroll reveals, magnetic buttons, 3D card tilt.
 - **Clean URLs** (`/projects`, `/skills`) that work on Vercel and any static server.

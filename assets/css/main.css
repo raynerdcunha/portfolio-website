@@ -225,6 +225,22 @@ code { font-family: var(--font-mono); font-size: 0.86em; color: var(--cyan); }
 .stat__num { display: block; font: 700 2.4rem/1 var(--font-display); margin-bottom: 10px; }
 .stat__label { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
 
+/* LeetCode stat box: total, difficulty pills, ring, links to the profile */
+.stat--lc { padding: 0; }
+.lc { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; height: 100%; min-height: 150px; padding: 22px 24px; color: inherit; border-radius: inherit; }
+.lc:hover { text-decoration: none; }
+.lc__pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font: 500 0.72rem var(--font-mono); letter-spacing: 0.04em; color: var(--c); border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); background: color-mix(in srgb, var(--c) 10%, transparent); }
+.pill b { font: 700 0.85rem var(--font-display); }
+.pill--easy { --c: #34d399; } .pill--medium { --c: #fbbf24; } .pill--hard { --c: #fb7185; }
+.lc__side { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; gap: 8px; }
+.lc__arrow { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid var(--line-strong); border-radius: 50%; color: var(--muted); font-size: 0.85rem; transition: color .2s, border-color .2s, transform .2s; }
+.lc:hover .lc__arrow, .lc:focus-visible .lc__arrow { color: var(--cyan); border-color: var(--cyan); transform: translate(2px, -2px); }
+.lc__ring { width: 72px; height: 72px; transform: rotate(-90deg); }
+.lc__track, .lc__arc { fill: none; stroke-width: 12; stroke-linecap: round; }
+.lc__track { stroke: rgba(148, 163, 255, 0.10); }
+.lc__arc--easy { stroke: #34d399; } .lc__arc--medium { stroke: #fbbf24; } .lc__arc--hard { stroke: #fb7185; }
+
 .sectors { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 16px; }
 .sector { display: block; padding: 22px; color: var(--text); }
 .sector:hover { text-decoration: none; transform: translateY(-3px); }
