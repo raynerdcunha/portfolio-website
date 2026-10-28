@@ -21,7 +21,7 @@
 
 The source code for [raynerdcunha.vercel.app](https://raynerdcunha.vercel.app), the personal portfolio of **Rayner Dcunha** (Computer Engineering co-op, University of Alberta).
 
-It's a dark, animated, multi-page static site with **no framework and no build step**: plain HTML, CSS and JavaScript. You can download it, run it locally and use it as a starting point for your own portfolio.
+It's a dark, animated, multi-page static site with **no framework and no build step**: plain HTML, CSS and JavaScript, plus one small serverless function. You can download it, run it locally and use it as a starting point for your own portfolio.
 
 ---
 
@@ -29,6 +29,7 @@ It's a dark, animated, multi-page static site with **no framework and no build s
 
 - **Interactive skills knowledge graph**: a live physics simulation written from scratch (no graph library). Drag nodes, hover to see where a skill was used, click a category to hide it.
 - **Serverless contact form**: Google Apps Script emails each message to you and sends the visitor a confirmation. No backend server, and visitors don't sign in.
+- **Live LeetCode stat**: a small Vercel serverless function (`api/leetcode.js`) reads the public solved counts and caches them for 3 minutes. If it can't reach LeetCode, the page keeps its built-in fallback numbers.
 - **"My side / your side" panel**: the owner's local time and weather next to the visitor's ([Open-Meteo](https://open-meteo.com), free, no API key, no location prompt).
 - **GSAP motion**: page-wipe transitions, decode-text intro, scroll reveals, magnetic buttons, 3D card tilt.
 - **Clean URLs** (`/projects`, `/skills`) that work on Vercel and any static server.
@@ -50,6 +51,8 @@ python -m http.server 8000
 Then open **http://localhost:8000**.
 
 > Open it through a local server like the one above, not by double-clicking `index.html`. The pages use root paths (`/assets/...`) that only resolve when served.
+>
+> A plain static server doesn't run `api/leetcode.js`, so locally the LeetCode stat shows its fallback numbers. To test the live version, use [`vercel dev`](https://vercel.com/docs/cli/dev) or check the deployed site.
 
 ---
 
@@ -62,6 +65,9 @@ Then open **http://localhost:8000**.
 ├── skills/index.html               # Knowledge graph + list view, certifications
 ├── contact/index.html              # Contact form + links
 ├── 404.html                        # "Lost in the Domain?"
+├── robots.txt, sitemap.xml         # Search engine hints
+├── api/
+│   └── leetcode.js                 # Serverless function: live LeetCode counts (Vercel)
 ├── assets/
 │   ├── css/main.css                # All styles; colour tokens are at the top
 │   ├── js/
@@ -70,6 +76,7 @@ Then open **http://localhost:8000**.
 │   │   ├── space-network.js        # Home background
 │   │   ├── time-weather.js         # Time + weather panel
 │   │   ├── project-effects.js      # Project filters, terminal animation
+│   │   ├── leetcode-stat.js        # Home page: fills the LeetCode stat from /api/leetcode
 │   │   ├── skills-data.js          # Skills content (graph + list read from here)
 │   │   ├── skills-graph.js         # Knowledge graph engine
 │   │   └── contact-form.js         # Form validation + sending
@@ -101,6 +108,7 @@ The text, résumé and branding in this repo belong to Rayner Dcunha (see [Licen
 | Résumé | `assets/resume/`, then update the links that point to it |
 | Colours | CSS variables at the top of `assets/css/main.css` |
 | Logo / favicon | `assets/images/rd-logo.svg`, `favicon-32.png`, `apple-touch-icon.png` |
+| LeetCode username (live stat) | `USERNAME` at the top of `api/leetcode.js`; the fallback numbers are in `index.html` |
 | Your city for time/weather | the `ME` coordinates and time zone at the top of `assets/js/time-weather.js` |
 | Site URL | `canonical` / `og:` tags in each page, `sitemap.xml`, `robots.txt` |
 
@@ -133,7 +141,7 @@ The script has a spam trap and rate limits built in: one message per sender ever
    - **Install Command:** *(empty)*
 4. Click **Deploy**. After that, every push to `main` redeploys automatically.
 
-Any other static host (Netlify, GitHub Pages, Cloudflare Pages) works too. `vercel.json` only adds Vercel-specific extras.
+Any other static host (Netlify, GitHub Pages, Cloudflare Pages) works too, but only Vercel runs `api/leetcode.js`; elsewhere the LeetCode stat just shows its fallback numbers. `vercel.json` only adds Vercel-specific extras.
 
 ---
 
