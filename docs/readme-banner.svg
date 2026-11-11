@@ -70,7 +70,7 @@
 
   <!-- text -->
   <text x="152" y="96" font-family="Consolas, 'SFMono-Regular', Menlo, monospace" font-size="15" letter-spacing="3" fill="#22e3ff">SYSTEM ONLINE · PORTFOLIO</text>
-  <text x="152" y="122" font-family="Consolas, 'SFMono-Regular', Menlo, monospace" font-size="13" fill="#6b7399">raynerdcunha.vercel.app</text>
+  <text x="152" y="122" font-family="Consolas, 'SFMono-Regular', Menlo, monospace" font-size="13" fill="#6b7399">www.raynerdcunha.com</text>
   <text x="70" y="200" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="62" font-weight="700" letter-spacing="-1.5" fill="#e9ecff">Rayner's <tspan fill="url(#grad)">Domain</tspan><tspan fill="#22e3ff" font-weight="400">_<animate attributeName="fill-opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1s" repeatCount="indefinite"/></tspan></text>
   <text x="72" y="240" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="20" fill="#9aa3c7">Computer Engineering co-op · University of Alberta · AI/ML · Frontend · Backend</text>
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://raynerdcunha.vercel.app/sitemap.xml
+Sitemap: https://www.raynerdcunha.com/sitemap.xml

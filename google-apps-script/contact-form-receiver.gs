@@ -28,7 +28,7 @@ const DELIVER_TO = '';
 // REPLY_TO_FOR_VISITORS: if a visitor replies to their confirmation email, where it goes.
 // Leave '' to use the website account.
 const REPLY_TO_FOR_VISITORS = '';
-const SITE_URL = 'https://raynerdcunha.vercel.app';
+const SITE_URL = 'https://www.raynerdcunha.com';
 const SEND_CONFIRMATION = true;   // set to false to stop auto-replies to visitors
 const DAILY_LIMIT = 40;           // max messages per day (protects your Gmail sending quota)
 const TIME_ZONE = 'America/Edmonton';

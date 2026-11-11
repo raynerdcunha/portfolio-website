@@ -1,9 +1,9 @@
 <p align="center">
-  <a href="https://raynerdcunha.vercel.app"><img src="docs/readme-banner.svg" alt="Rayner's Domain — portfolio of Rayner Dcunha" width="100%"></a>
+  <a href="https://www.raynerdcunha.com"><img src="docs/readme-banner.svg" alt="Rayner's Domain — portfolio of Rayner Dcunha" width="100%"></a>
 </p>
 
 <p align="center">
-  <a href="https://raynerdcunha.vercel.app"><img src="https://img.shields.io/badge/Live-raynerdcunha.vercel.app-22e3ff?style=for-the-badge&logo=vercel&logoColor=white&labelColor=05060d" alt="Live site"></a>
+  <a href="https://www.raynerdcunha.com"><img src="https://img.shields.io/badge/Live-www.raynerdcunha.com-22e3ff?style=for-the-badge&logo=vercel&logoColor=white&labelColor=05060d" alt="Live site"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/Code-MIT-a78bfa?style=for-the-badge&labelColor=05060d" alt="MIT License"></a>
 </p>
 
@@ -19,7 +19,7 @@
 
 # Rayner's Domain: Portfolio Website
 
-The source code for [raynerdcunha.vercel.app](https://raynerdcunha.vercel.app), the personal portfolio of **Rayner Dcunha** (Computer Engineering co-op, University of Alberta).
+The source code for [www.raynerdcunha.com](https://www.raynerdcunha.com), the personal portfolio of **Rayner Dcunha** (Computer Engineering co-op, University of Alberta).
 
 It's a dark, animated, multi-page static site with **no framework and no build step**: plain HTML, CSS and JavaScript, plus one small serverless function. You can download it, run it locally and use it as a starting point for your own portfolio.
 
