@@ -151,7 +151,7 @@ code { font-family: var(--font-mono); font-size: 0.86em; color: var(--cyan); }
 
 .footer {
   margin-top: 80px; padding-top: 24px; border-top: 1px solid var(--line);
-  display: flex; justify-content: center; gap: 20px; font: 0.78rem var(--font-mono); color: var(--dim);
+  display: flex; justify-content: center; gap: 20px; font: 0.78rem var(--font-mono); color: var(--muted);
 }
 
 /* ---------- Page wipe transition ---------- */
