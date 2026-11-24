@@ -1,0 +1,25 @@
+# Rayner Dcunha
+
+> Rayner Dcunha is a Computer Engineering co-op student at the University of Alberta building ML systems, full-stack web apps and systems software. He is looking for a co-op/internship starting Winter 2027. This site, Rayner's Domain, is his personal portfolio.
+
+## Pages
+
+- [Home](https://www.raynerdcunha.com/): overview, current focus and profile links
+- [Experience](https://www.raynerdcunha.com/experience): AI/ML Research Assistant Intern and Dean's Research Award Research Assistant at the University of Alberta, plus leadership roles
+- [Projects](https://www.raynerdcunha.com/projects): selected projects with GitHub and live links
+- [Skills](https://www.raynerdcunha.com/skills): interactive knowledge graph of Python, JavaScript, C, SQL, FastAPI, GNNs, LLM agents and more
+- [Contact](https://www.raynerdcunha.com/contact): co-op and internship inquiries for Winter 2027
+- [Resume (PDF)](https://www.raynerdcunha.com/resume): current resume
+
+## Projects
+
+- [FlameoShell](https://github.com/raynerdcunha/flameoshell): a Unix-like shell written in C (fork/execve, pipes, I/O redirection, job control, signal handling) with a browser-based demo
+- [Badgepath](https://badge-path.vercel.app): a zero-dependency Node.js web app that shows which GitHub achievements a public profile has earned and estimates progress toward higher tiers ([source](https://github.com/raynerdcunha/badge-path))
+- [IEEE 33-Bus Grid Dashboard](https://www.mdpi.com/4118630): a Graph-Transformer that screens 50,751 candidate grid topologies in one pass (83 minutes down to 48 seconds, 103x faster), with a live-chart dashboard
+- [Omakase or Not?](https://github.com/raynerdcunha/omakase-or-not): an Android game (Kotlin, Jetpack Compose) that settles where to eat with three randomized outcomes
+
+## Profiles
+
+- [GitHub](https://github.com/raynerdcunha)
+- [LinkedIn](https://www.linkedin.com/in/raynerdcunha)
+- [LeetCode](https://leetcode.com/u/raynerdcunha)

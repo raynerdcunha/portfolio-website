@@ -1,4 +1,18 @@
 User-agent: *
 Allow: /
 
+# Search and AI crawlers are welcome to read this site
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+Allow: /
+
 Sitemap: https://www.raynerdcunha.com/sitemap.xml
