@@ -134,12 +134,27 @@
 
       <article class="proj proj--full tilt glass glass--glow reveal" data-tags="web" style="--d:.04s">
         <div class="proj__visual">
-          <div class="vis-center bp-vis" role="img" aria-label="Badge tiers filling up: Default, Bronze, Silver, Gold">
+          <div class="vis-center bp-vis" role="img" aria-label="Four badge tiers (Default, Bronze, Silver, Gold) filling up as progress grows">
+            <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+              <defs>
+                <symbol id="bp-shark" viewBox="0 0 120 62">
+                  <path d="M114 34C106 26 92 20 74 20C56 20 38 25 24 30L6 9Q15 26 15 31Q15 37 7 53L24 36C40 42 60 46 80 44C98 42 108 38 114 34Z" fill="currentColor"/>
+                  <path d="M62 21 80 2Q78 14 90 21Z" fill="currentColor"/>
+                  <path d="M80 38 66 58Q78 50 96 40Z" fill="currentColor"/>
+                  <path d="M38 41 32 49 47 43Z" fill="currentColor"/>
+                  <path d="M34 26 30 20 41 24Z" fill="currentColor"/>
+                  <path d="M114 34C108 38 98 42 80 44C60 46 40 42 24 36C40 39 60 39 80 37C98 36 108 35 114 34Z" fill="#fff" opacity=".28"/>
+                  <path d="M89 28Q86.500 32 89 36M94 27.500Q91.500 32 94 36.500M99 28Q96.500 32 99 35.500" fill="none" stroke="#05060d" stroke-width="1.2" stroke-linecap="round" opacity=".55"/>
+                  <path d="M113 34Q105 38.500 98 37.500" fill="none" stroke="#05060d" stroke-width="1.1" stroke-linecap="round" opacity=".6"/>
+                  <circle cx="104" cy="31" r="1.9" fill="#05060d"/>
+                </symbol>
+              </defs>
+            </svg>
             <div class="bp-tiers">
-              <span class="bp-tier bp-tier--0">&#9670;<small>DEFAULT</small></span>
-              <span class="bp-tier bp-tier--1">&#9670;<small>BRONZE</small></span>
-              <span class="bp-tier bp-tier--2">&#9670;<small>SILVER</small></span>
-              <span class="bp-tier bp-tier--3">&#9670;<small>GOLD</small></span>
+              <span class="bp-tier bp-tier--0"><svg viewBox="0 0 120 62" aria-hidden="true"><use href="#bp-shark"/></svg><small>DEFAULT</small></span>
+              <span class="bp-tier bp-tier--1"><svg viewBox="0 0 120 62" aria-hidden="true"><use href="#bp-shark"/></svg><small>BRONZE</small></span>
+              <span class="bp-tier bp-tier--2"><svg viewBox="0 0 120 62" aria-hidden="true"><use href="#bp-shark"/></svg><small>SILVER</small></span>
+              <span class="bp-tier bp-tier--3"><svg viewBox="0 0 120 62" aria-hidden="true"><use href="#bp-shark"/></svg><small>GOLD</small></span>
             </div>
             <div class="bp-track"><span class="bp-fill"></span></div>
             <span class="vis-cap">ESTIMATED PROGRESS &middot; NEXT TIER</span>
