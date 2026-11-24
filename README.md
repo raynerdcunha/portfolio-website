@@ -33,6 +33,7 @@ It's a dark, animated, multi-page static site with **no framework and no build s
 - **"My side / your side" panel**: the owner's local time and weather next to the visitor's ([Open-Meteo](https://open-meteo.com), free, no API key, no location prompt).
 - **GSAP motion**: page-wipe transitions, decode-text intro, scroll reveals, magnetic buttons, 3D card tilt.
 - **Clean URLs** (`/projects`, `/skills`) that work on Vercel and any static server.
+- **Search and AI-search ready**: a unique title and description per page, OpenGraph and Twitter cards, JSON-LD structured data, `sitemap.xml`, `robots.txt`, and an `llms.txt` summary for AI tools.
 
 **Tech:** HTML · CSS · JavaScript · GSAP + ScrollTrigger (bundled) · SVG / Canvas · Google Apps Script · Vercel
 
@@ -66,6 +67,8 @@ Then open **http://localhost:8000**.
 ├── contact/index.html              # Contact form + links
 ├── 404.html                        # "Lost in the Domain?"
 ├── robots.txt, sitemap.xml         # Search engine hints
+├── llms.txt                        # Plain-text site summary for AI tools
+├── favicon.ico, site.webmanifest   # Icons for browsers and phones
 ├── api/
 │   └── leetcode.js                 # Serverless function: live LeetCode counts (Vercel)
 ├── assets/
@@ -81,7 +84,7 @@ Then open **http://localhost:8000**.
 │   │   ├── skills-graph.js         # Knowledge graph engine
 │   │   └── contact-form.js         # Form validation + sending
 │   ├── vendor/                     # GSAP + ScrollTrigger
-│   ├── images/                     # Favicon, social preview image
+│   ├── images/                     # Favicons, app icons, social preview image
 │   └── resume/                     # Résumé PDF
 ├── google-apps-script/
 │   └── contact-form-receiver.gs    # Contact form backend (runs on script.google.com)
@@ -107,10 +110,10 @@ The text, résumé and branding in this repo belong to Rayner Dcunha (see [Licen
 | Links + availability | `contact/index.html` and the taskbar in every page |
 | Résumé | `assets/resume/`, then update the links that point to it |
 | Colours | CSS variables at the top of `assets/css/main.css` |
-| Logo / favicon | `assets/images/rd-logo.svg`, `favicon-32.png`, `apple-touch-icon.png` |
+| Logo / favicon | `assets/images/rd-logo.svg`, `favicon-32.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, and `favicon.ico` in the root |
 | LeetCode username (live stat) | `USERNAME` at the top of `api/leetcode.js`; the fallback numbers are in `index.html` |
 | Your city for time/weather | the `ME` coordinates and time zone at the top of `assets/js/time-weather.js` |
-| Site URL | `canonical` / `og:` tags in each page, `sitemap.xml`, `robots.txt` |
+| Site URL | `canonical` / `og:` / `twitter:` tags and the JSON-LD block in each page, `sitemap.xml`, `robots.txt`, `llms.txt` |
 
 The taskbar is copied into each page. If you add or rename a page, update it in all of them.
 
