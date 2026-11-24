@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rayner's Domain</title>
-  <meta name="description" content="Projects by Rayner Dcunha: FlameoShell (Unix shell in C), an ML power-grid dashboard, an embedded IMU 3D wheel, a 2nd-place LRT reporting site and an Android app.">
+  <meta name="description" content="Projects by Rayner Dcunha: FlameoShell (Unix shell in C), Badgepath (GitHub achievement tracker), an ML power-grid dashboard, an embedded IMU 3D wheel, a 2nd-place LRT reporting site and an Android app.">
   <meta name="author" content="Rayner Dcunha">
   <link rel="canonical" href="https://www.raynerdcunha.com/projects">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Rayner's Domain">
   <meta property="og:title" content="Rayner Dcunha | Rayner's Domain">
-  <meta property="og:description" content="Projects by Rayner Dcunha: FlameoShell (Unix shell in C), an ML power-grid dashboard, an embedded IMU 3D wheel, a 2nd-place LRT reporting site and an Android app.">
+  <meta property="og:description" content="Projects by Rayner Dcunha: FlameoShell (Unix shell in C), Badgepath (GitHub achievement tracker), an ML power-grid dashboard, an embedded IMU 3D wheel, a 2nd-place LRT reporting site and an Android app.">
   <meta property="og:url" content="https://www.raynerdcunha.com/projects">
   <meta property="og:image" content="https://www.raynerdcunha.com/assets/images/og-preview.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -94,7 +94,7 @@
           <ul class="chips"><li>C</li><li>fork / execve / pipe</li><li>sigaction</li><li>JS</li></ul>
           <div class="proj__links">
             <a class="proj__link" href="https://github.com/raynerdcunha/flameoshell" target="_blank" rel="noopener">GitHub ↗</a>
-            <a class="proj__link proj__link--live" href="https://flameoshell.raynerdcunha.com" target="_blank" rel="noopener">Live demo ↗</a>
+            <a class="proj__link proj__link--live" href="https://flameoshell.vercel.app" target="_blank" rel="noopener">Live demo ↗</a>
           </div>
         </div>
       </article>
@@ -129,6 +129,36 @@
           <p class="proj__problem">An STM32 board streams motion data and a web page spins a custom 3D wheel in real time as you move it.</p>
           <ul class="chips"><li>STM32</li><li>MPU-6050</li><li>C</li><li>HTML</li></ul>
           <div class="proj__links"><span class="proj__note">Hardware · demo video soon</span></div>
+        </div>
+      </article>
+
+      <article class="proj proj--full tilt glass glass--glow reveal" data-tags="web" style="--d:.04s">
+        <div class="proj__visual">
+          <div class="vis-center bp-vis" role="img" aria-label="Badge tiers filling up: Default, Bronze, Silver, Gold">
+            <div class="bp-tiers">
+              <span class="bp-tier bp-tier--0">&#9670;<small>DEFAULT</small></span>
+              <span class="bp-tier bp-tier--1">&#9670;<small>BRONZE</small></span>
+              <span class="bp-tier bp-tier--2">&#9670;<small>SILVER</small></span>
+              <span class="bp-tier bp-tier--3">&#9670;<small>GOLD</small></span>
+            </div>
+            <div class="bp-track"><span class="bp-fill"></span></div>
+            <span class="vis-cap">ESTIMATED PROGRESS &middot; NEXT TIER</span>
+          </div>
+        </div>
+        <div class="proj__body">
+          <p class="proj__meta"><b>WEB &middot; FULL-STACK</b><span>NOV 2026</span></p>
+          <h2 class="proj__title">Badgepath</h2>
+          <p class="proj__problem">GitHub shows the achievement badges you have, but never how close you are to the next tier. Type a username and Badgepath shows what is earned, estimates progress toward Bronze, Silver and Gold, and says plainly which achievements can&rsquo;t be counted from public data. No login needed.</p>
+          <ul class="proj__points">
+            <li>Progress is estimated from public profile, repo and pull-request data and kept separate from the badge GitHub actually displays</li>
+            <li>Zero third-party dependencies: Node.js standard-library API, vanilla JS frontend, deployed as Vercel serverless functions</li>
+            <li>Input validation, origin checks, per-address rate limiting and an allowlisted static server, with <code>node --test</code> coverage for parsing, streaks, caching and CORS</li>
+          </ul>
+          <ul class="chips"><li>Node.js</li><li>JavaScript</li><li>REST API</li><li>Vercel</li></ul>
+          <div class="proj__links">
+            <a class="proj__link" href="https://github.com/raynerdcunha/badge-path" target="_blank" rel="noopener">GitHub &#8599;</a>
+            <a class="proj__link proj__link--live" href="https://badge-path.vercel.app" target="_blank" rel="noopener">Live demo &#8599;</a>
+          </div>
         </div>
       </article>
 

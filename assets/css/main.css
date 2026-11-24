@@ -594,3 +594,38 @@ code { font-family: var(--font-mono); font-size: 0.86em; color: var(--cyan); }
 .proj__link--live { border-color: transparent; color: #03121a; background: linear-gradient(100deg, var(--cyan), var(--violet)); box-shadow: 0 0 16px rgba(34, 227, 255, 0.35); }
 .proj__link--live:hover { color: #03121a; box-shadow: 0 0 26px rgba(34, 227, 255, 0.6); }
 .list-group.is-hidden { display: none; }
+
+/* ---------- Projects: Badgepath card (full-width row, tier-progress visual) ---------- */
+.proj--full { grid-column: span 6; flex-direction: row; }
+.proj--full .proj__visual { flex: 0 0 38%; height: auto; min-height: 260px; border-bottom: 0; border-right: 1px solid var(--line); }
+.proj--full .proj__body { flex: 1; }
+.bp-vis { gap: 16px; padding: 18px 22px; }
+.bp-tiers { display: flex; gap: 14px; justify-content: center; }
+.bp-tier {
+  --c: var(--dim);
+  display: grid; justify-items: center; gap: 4px; width: 60px; padding: 10px 0 8px; border-radius: 12px;
+  font-size: 1.5rem; line-height: 1; color: #1c2238; border: 1.5px solid #1c2238;
+  animation: bp-light 6s ease-in-out infinite;
+}
+.bp-tier small { font: 500 0.56rem var(--font-mono); letter-spacing: 0.08em; color: var(--dim); }
+.bp-tier--0 { --c: #8b93b8; animation-delay: 0s; }
+.bp-tier--1 { --c: #cd7f32; animation-delay: 1.2s; }
+.bp-tier--2 { --c: #c9d1e6; animation-delay: 2.4s; }
+.bp-tier--3 { --c: #f5c542; animation-delay: 3.6s; }
+.bp-track { width: min(280px, 82%); height: 8px; border-radius: 999px; background: #151a33; overflow: hidden; }
+.bp-fill { display: block; height: 100%; width: 0; border-radius: inherit; background: var(--grad); box-shadow: 0 0 12px var(--cyan); animation: bp-fill 6s ease-in-out infinite; }
+@keyframes bp-fill { 0% { width: 0; } 70%, 88% { width: 100%; } 100% { width: 100%; opacity: 0; } }
+@keyframes bp-light {
+  0%, 12% { color: #1c2238; border-color: #1c2238; box-shadow: none; }
+  22%, 88% { color: var(--c); border-color: var(--c); box-shadow: 0 0 18px color-mix(in srgb, var(--c) 45%, transparent); }
+  100% { color: #1c2238; border-color: #1c2238; box-shadow: none; }
+}
+@media (max-width: 1100px) {
+  .proj--full { flex-direction: column; }
+  .proj--full .proj__visual { flex: none; min-height: 190px; border-right: 0; border-bottom: 1px solid var(--line); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bp-tier, .bp-fill { animation: none; }
+  .bp-tier { color: var(--c); border-color: var(--c); }
+  .bp-fill { width: 100%; }
+}
