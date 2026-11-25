@@ -12,8 +12,8 @@
  *   script.google.com → New project → paste this file → Save
  *   Deploy → New deployment → type "Web app"
  *     Execute as: Me      Who has access: Anyone
- *   Deploy → Authorize → copy the Web app URL (ends in /exec)
- *   Paste that URL into the form's action="" in contact/index.html
+ *   Deploy → Authorize → copy the Web app URL (ends in /exec) and keep it private
+ *   In Vercel: Settings → Environment Variables → add CONTACT_SCRIPT_URL = that URL (Production), then redeploy
  *
  * After editing this script later: Deploy → Manage deployments → ✏️ → Version: New version → Deploy
  * (the URL stays the same).
@@ -47,15 +47,6 @@ function doPost(e) {
 
     if (!name || !email || !subject || !message) return json({ ok: false, error: 'missing_fields' });
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return json({ ok: false, error: 'bad_email' });
-
-    // Cloudflare Turnstile spam check. Turns on as soon as TURNSTILE_SECRET exists in
-    // Project Settings > Script properties; until then the form works without it.
-    const turnstileSecret = PropertiesService.getScriptProperties().getProperty('TURNSTILE_SECRET');
-    if (turnstileSecret) {
-      const token = p['cf-turnstile-response'];
-      if (!token) return json({ ok: false, error: 'captcha_missing' });
-      if (!verifyTurnstile(turnstileSecret, token)) return json({ ok: false, error: 'captcha_failed' });
-    }
 
     // Rate limits: one message per email address every 2 minutes, plus a daily cap.
     const cache = CacheService.getScriptCache();
@@ -117,19 +108,6 @@ function doPost(e) {
 // Visiting the /exec URL in a browser shows this — handy to check the deployment is live.
 function doGet() {
   return json({ ok: true, status: 'Rayner\'s Domain contact form is running' });
-}
-
-function verifyTurnstile(secret, token) {
-  try {
-    const res = UrlFetchApp.fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-      method: 'post',
-      payload: { secret: secret, response: String(token).slice(0, 2048) },
-      muteHttpExceptions: true
-    });
-    return JSON.parse(res.getContentText()).success === true;
-  } catch (err) {
-    return false;
-  }
 }
 
 function clean(value, max) {
