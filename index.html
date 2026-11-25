@@ -29,23 +29,15 @@
   <link rel="icon" href="/assets/images/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css">
   <link rel="stylesheet" href="/assets/css/main.css">
-  <script>
-    (function () {
-      var r = document.documentElement; r.classList.add('js');
-      var seen = false; try { seen = sessionStorage.getItem('rd-loader-seen') === '1'; } catch (e) {}
-      var rm = false; // site effects always run
-      var wiping = false; try { wiping = sessionStorage.getItem('rd-wipe') === '1'; } catch (e) {}
-      if (wiping && !rm) r.classList.add('is-wiping');
-      else if (!seen && !rm) r.classList.add('is-loading');
-    })();
-  </script>
+  <script src="/assets/js/boot.js"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.raynerdcunha.com/#person","name":"Rayner Dcunha","url":"https://www.raynerdcunha.com/","email":"mailto:rdcunha@ualberta.ca","jobTitle":"Computer Engineering Co-Op Student","affiliation":{"@type":"CollegeOrUniversity","name":"University of Alberta"},"knowsAbout":["Machine learning","Graph neural networks","Full-stack web development","Systems programming in C","Embedded systems"],"sameAs":["https://github.com/raynerdcunha","https://www.linkedin.com/in/raynerdcunha","https://leetcode.com/u/raynerdcunha"]},{"@type":"WebSite","@id":"https://www.raynerdcunha.com/#website","name":"Rayner's Domain","url":"https://www.raynerdcunha.com/","author":{"@id":"https://www.raynerdcunha.com/#person"}}]}</script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <div class="loader" aria-hidden="true"><span class="loader__mark grad-text">RD</span></div>
   <div class="wipe" aria-hidden="true"></div>
   <div class="space" aria-hidden="true"><canvas id="space-network" aria-hidden="true"></canvas></div>
@@ -67,7 +59,7 @@
       </nav>
       <div class="taskbar__right">
         <span class="taskbar__status"><span class="pulse" aria-hidden="true"></span>Co-Op / Internship · Spring/Summer 2027</span>
-        <a class="taskbar__resume magnetic" href="/resume" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span><span class="visually-hidden">(PDF, opens in a new tab)</span></a>
+        <a class="taskbar__resume magnetic" href="/resume" target="_blank" rel="noopener noreferrer">Resume <span aria-hidden="true">↗</span><span class="visually-hidden">(PDF, opens in a new tab)</span></a>
       </div>
     </div>
     <div class="progress" aria-hidden="true"><span></span></div>
@@ -85,7 +77,7 @@
         </p>
         <div class="home__actions">
           <a class="btn btn--neon magnetic" href="/projects">Explore my projects <span class="arrow" aria-hidden="true">→</span></a>
-          <a class="btn magnetic" href="/assets/resume/Rayner_Dcunha_Resume.pdf" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span></a>
+          <a class="btn magnetic" href="/assets/resume/Rayner_Dcunha_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume <span aria-hidden="true">↗</span></a>
           <a class="btn magnetic" href="/contact">Contact</a>
         </div>
       </div>
@@ -106,15 +98,16 @@
           </div>
           <p class="tz-gap"><span class="tz-line" aria-hidden="true"></span><span data-part="gap">&nbsp;</span></p>
         </div>
-      <aside class="profile glass" aria-label="Quick profile">
+      <aside class="profile glass">
+        <h2 class="visually-hidden">Quick profile</h2>
         <div class="profile__bar" aria-hidden="true"><span></span><span></span><span></span><b>profile.sys</b></div>
         <dl class="profile__rows">
           <div class="profile__row"><dt>STATUS</dt><dd><span class="online">● Seeking Co-Op / Internship</span><small>Starting Spring/Summer 2027</small></dd></div>
-          <div class="profile__row"><dt>PROGRAM</dt><dd>Computer Engineering Co-Op<small>University of Alberta · Grad 2028</small></dd></div>
+          <div class="profile__row"><dt>PROGRAM</dt><dd>Computer Engineering Co-Op <small>University of Alberta · Grad 2028</small></dd></div>
           <div class="profile__row"><dt>FOCUS</dt><dd>AI/ML · Frontend · Backend</dd></div>
-          <div class="profile__row"><dt>LAST ROLE</dt><dd>AI/ML Research Assistant Intern<small>UAlberta ECE · Jan – Aug 2026</small></dd></div>
+          <div class="profile__row"><dt>LAST ROLE</dt><dd>AI/ML Research Assistant Intern <small>UAlberta ECE · Jan – Aug 2026</small></dd></div>
           <div class="profile__row"><dt>STACK</dt><dd>Python · JS · C · SQL · Kotlin · FastAPI · Node.js</dd></div>
-          <div class="profile__row"><dt>NOW</dt><dd>VP Finance, CompE Club<small>EcoCar electrical crew · SU tutor</small></dd></div>
+          <div class="profile__row"><dt>NOW</dt><dd>VP Finance, CompE Club <small>EcoCar electrical crew · SU tutor</small></dd></div>
         </dl>
       </aside>
       </div>
@@ -127,11 +120,12 @@
       <path class="beam beam--3" d="M0,190 C300,120 500,170 700,60 S1050,150 1200,180"/>
     </svg>
 
-    <ul class="stats" aria-label="Highlights">
+    <h2 class="visually-hidden">Highlights</h2>
+    <ul class="stats">
       <li class="stat glass glass--glow reveal"><span class="stat__num grad-text" data-count="31" data-suffix="%">31%</span><span class="stat__label">average simulated power-loss reduction from my research model</span></li>
       <li class="stat glass glass--glow reveal" style="--d:.08s"><span class="stat__num grad-text" data-count="103" data-suffix="×">103×</span><span class="stat__label">faster grid decisions — 83 minutes of brute force down to 48 seconds</span></li>
       <li class="stat stat--lc glass glass--glow reveal" style="--d:.16s">
-        <a class="lc" href="https://leetcode.com/u/raynerdcunha/" target="_blank" rel="noopener" aria-label="LeetCode profile: 163 problems solved. Opens in a new tab.">
+        <a class="lc" href="https://leetcode.com/u/raynerdcunha/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode profile: 163 problems solved. Opens in a new tab.">
           <span class="lc__main">
             <span id="lc-solved" class="stat__num grad-text" data-count="163" data-suffix="">163</span>
             <span class="stat__label">LeetCode problems solved</span>
@@ -156,22 +150,26 @@
 
 
 
-    <div class="marquee" aria-label="Tech I work with">
+    <h2 class="visually-hidden">Tech I work with</h2>
+    <div class="marquee">
       <div class="marquee__track">
         <span>Python</span><span>Graph Neural Networks</span><span>FastAPI</span><span>JS</span><span>Node.js</span><span>C</span><span>Linux</span><span>SQL</span><span>Neo4j</span><span>Kotlin</span><span>Jetpack Compose</span><span>LLM Agents</span><span>STM32</span><span>Git</span>
         <span aria-hidden="true">Python</span><span aria-hidden="true">Graph Neural Networks</span><span aria-hidden="true">FastAPI</span><span aria-hidden="true">JS</span><span aria-hidden="true">Node.js</span><span aria-hidden="true">C</span><span aria-hidden="true">Linux</span><span aria-hidden="true">SQL</span><span aria-hidden="true">Neo4j</span><span aria-hidden="true">Kotlin</span><span aria-hidden="true">Jetpack Compose</span><span aria-hidden="true">LLM Agents</span><span aria-hidden="true">STM32</span><span aria-hidden="true">Git</span>
       </div>
     </div>
 
+    <h2 class="visually-hidden">Explore the domain</h2>
     <nav class="sectors" aria-label="Explore the domain">
-      <a class="sector glass glass--glow reveal" href="/experience"><span class="sector__num">02 / EXPERIENCE</span><span class="sector__title">Research &amp; roles <span aria-hidden="true">→</span></span><p class="sector__text">Two research positions and nine leadership roles.</p></a>
-      <a class="sector glass glass--glow reveal" style="--d:.06s" href="/projects"><span class="sector__num">03 / PROJECTS</span><span class="sector__title">Things I built <span aria-hidden="true">→</span></span><p class="sector__text">ML, systems, web, Android and hardware.</p></a>
-      <a class="sector glass glass--glow reveal" style="--d:.12s" href="/skills"><span class="sector__num">04 / SKILLS</span><span class="sector__title">Knowledge graph <span aria-hidden="true">→</span></span><p class="sector__text">26 skills, each linked to where I used it.</p></a>
-      <a class="sector glass glass--glow reveal" style="--d:.18s" href="/contact"><span class="sector__num">05 / CONTACT</span><span class="sector__title">Say hello <span aria-hidden="true">→</span></span><p class="sector__text">Form, email, LinkedIn, GitHub.</p></a>
+      <a class="sector glass glass--glow reveal" href="/experience"><span class="sector__num">02 / EXPERIENCE</span> <span class="sector__title">Research &amp; roles <span aria-hidden="true">→</span></span> <p class="sector__text">Two research positions and nine leadership roles.</p></a>
+      <a class="sector glass glass--glow reveal" style="--d:.06s" href="/projects"><span class="sector__num">03 / PROJECTS</span> <span class="sector__title">Things I built <span aria-hidden="true">→</span></span> <p class="sector__text">ML, systems, web, Android and hardware.</p></a>
+      <a class="sector glass glass--glow reveal" style="--d:.12s" href="/skills"><span class="sector__num">04 / SKILLS</span> <span class="sector__title">Knowledge graph <span aria-hidden="true">→</span></span> <p class="sector__text">26 skills, each linked to where I used it.</p></a>
+      <a class="sector glass glass--glow reveal" style="--d:.18s" href="/contact"><span class="sector__num">05 / CONTACT</span> <span class="sector__title">Say hello <span aria-hidden="true">→</span></span> <p class="sector__text">Form, email, LinkedIn, GitHub.</p></a>
     </nav>
 
     <footer class="footer">
       <span>Copyright © <span id="year">2026</span> Rayner Dcunha</span>
+      <a href="/privacy">Privacy</a>
+      <a href="/accessibility">Accessibility</a>
     </footer>
   </main>
   <script src="/assets/vendor/gsap.min.js" defer></script>

@@ -29,23 +29,15 @@
   <link rel="icon" href="/assets/images/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css">
   <link rel="stylesheet" href="/assets/css/main.css">
-  <script>
-    (function () {
-      var r = document.documentElement; r.classList.add('js');
-      var seen = false; try { seen = sessionStorage.getItem('rd-loader-seen') === '1'; } catch (e) {}
-      var rm = false; // site effects always run
-      var wiping = false; try { wiping = sessionStorage.getItem('rd-wipe') === '1'; } catch (e) {}
-      if (wiping && !rm) r.classList.add('is-wiping');
-      else if (!seen && !rm) r.classList.add('is-loading');
-    })();
-  </script>
+  <script src="/assets/js/boot.js"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.raynerdcunha.com/"},{"@type":"ListItem","position":2,"name":"Experience","item":"https://www.raynerdcunha.com/experience"}]}]}</script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <div class="loader" aria-hidden="true"><span class="loader__mark grad-text">RD</span></div>
   <div class="wipe" aria-hidden="true"></div>
   <div class="space" aria-hidden="true"></div>
@@ -67,7 +59,7 @@
       </nav>
       <div class="taskbar__right">
         <span class="taskbar__status"><span class="pulse" aria-hidden="true"></span>Co-Op / Internship · Spring/Summer 2027</span>
-        <a class="taskbar__resume magnetic" href="/resume" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span><span class="visually-hidden">(PDF, opens in a new tab)</span></a>
+        <a class="taskbar__resume magnetic" href="/resume" target="_blank" rel="noopener noreferrer">Resume <span aria-hidden="true">↗</span><span class="visually-hidden">(PDF, opens in a new tab)</span></a>
       </div>
     </div>
     <div class="progress" aria-hidden="true"><span></span></div>
@@ -107,15 +99,15 @@
       <aside>
         <h2 class="side-title">Leadership &amp; involvement</h2>
         <ul class="roles">
-          <li class="role glass glass--glow reveal"><span class="role__title">Vice President Finance</span><span class="role__org"><a href="https://www.compeclub.com/" target="_blank" rel="noopener">Computer Engineering Club ↗</a> — runs HackED, workshops and career events</span><span class="role__dates">MAY 2026 – NOW</span></li>
-          <li class="role glass glass--glow reveal"><span class="role__title">Electrical Crew Member</span><span class="role__org"><a href="https://www.ualberta-ecocar.ca/" target="_blank" rel="noopener">EcoCar ↗</a> — hydrogen fuel-cell cars for Shell Eco-marathon; STM32 &amp; PCB design</span><span class="role__dates">MAY 2026 – NOW</span></li>
-          <li class="role glass glass--glow reveal"><span class="role__title">Junior Leader</span><span class="role__org"><a href="https://www.ualberta.ca/en/engineering/community-giving/student-involvement/student-engagement-leadership-program.html" target="_blank" rel="noopener">Student Engagement Leadership Program ↗</a> — orientation, wellness &amp; transition</span><span class="role__dates">MAY 2026 – NOW</span></li>
-          <li class="role glass glass--glow reveal"><span class="role__title">Student Tutor</span><span class="role__org"><a href="https://www2.su.ualberta.ca/services/infolink/tutor/registry/tutor/1423/" target="_blank" rel="noopener">Students' Union Tutor Registry ↗</a> — 20+ sessions: circuits, calculus, data structures</span><span class="role__dates">SEP 2025 – NOW</span></li>
-          <li class="role glass glass--glow reveal"><span class="role__title">Director of Auditing &amp; Finance</span><span class="role__org"><a href="https://www.essualberta.ca/" target="_blank" rel="noopener">Engineering Students' Society ↗</a> — financial operations and auditing</span><span class="role__dates">JAN – APR 2026</span></li>
-          <li class="role glass glass--glow reveal"><span class="role__title">Funding Coordinator</span><span class="role__org"><a href="https://www.essualberta.ca/" target="_blank" rel="noopener">Engineering Students' Society ↗</a> — funding allocation for student initiatives</span><span class="role__dates">JAN – APR 2026</span></li>
-          <li class="role glass glass--glow reveal"><span class="role__title">Junior Executive (External)</span><span class="role__org"><a href="https://www.compeclub.com/" target="_blank" rel="noopener">Computer Engineering Club ↗</a> — external relations &amp; outreach</span><span class="role__dates">JAN – APR 2026</span></li>
-          <li class="role glass glass--glow reveal"><span class="role__title">Organizer &amp; Project Judge</span><span class="role__org"><a href="https://hacked.compeclub.com/" target="_blank" rel="noopener">HackED 2026 ↗</a> — 500+ student hackathon</span><span class="role__dates">JAN – FEB 2026</span></li>
-          <li class="role glass glass--glow reveal"><span class="role__title">Finance Coordinator</span><span class="role__org"><a href="https://www.essualberta.ca/" target="_blank" rel="noopener">Engineering Students' Society ↗</a> — reimbursements, bookkeeping, funding</span><span class="role__dates">OCT – DEC 2025</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Vice President Finance</span><span class="role__org"><a href="https://www.compeclub.com/" target="_blank" rel="noopener noreferrer">Computer Engineering Club ↗</a> — runs HackED, workshops and career events</span><span class="role__dates">MAY 2026 – NOW</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Electrical Crew Member</span><span class="role__org"><a href="https://www.ualberta-ecocar.ca/" target="_blank" rel="noopener noreferrer">EcoCar ↗</a> — hydrogen fuel-cell cars for Shell Eco-marathon; STM32 &amp; PCB design</span><span class="role__dates">MAY 2026 – NOW</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Junior Leader</span><span class="role__org"><a href="https://www.ualberta.ca/en/engineering/community-giving/student-involvement/student-engagement-leadership-program.html" target="_blank" rel="noopener noreferrer">Student Engagement Leadership Program ↗</a> — orientation, wellness &amp; transition</span><span class="role__dates">MAY 2026 – NOW</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Student Tutor</span><span class="role__org"><a href="https://www2.su.ualberta.ca/services/infolink/tutor/registry/tutor/1423/" target="_blank" rel="noopener noreferrer">Students' Union Tutor Registry ↗</a> — 20+ sessions: circuits, calculus, data structures</span><span class="role__dates">SEP 2025 – NOW</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Director of Auditing &amp; Finance</span><span class="role__org"><a href="https://www.essualberta.ca/" target="_blank" rel="noopener noreferrer">Engineering Students' Society ↗</a> — financial operations and auditing</span><span class="role__dates">JAN – APR 2026</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Funding Coordinator</span><span class="role__org"><a href="https://www.essualberta.ca/" target="_blank" rel="noopener noreferrer">Engineering Students' Society ↗</a> — funding allocation for student initiatives</span><span class="role__dates">JAN – APR 2026</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Junior Executive (External)</span><span class="role__org"><a href="https://www.compeclub.com/" target="_blank" rel="noopener noreferrer">Computer Engineering Club ↗</a> — external relations &amp; outreach</span><span class="role__dates">JAN – APR 2026</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Organizer &amp; Project Judge</span><span class="role__org"><a href="https://hacked.compeclub.com/" target="_blank" rel="noopener noreferrer">HackED 2026 ↗</a> — 500+ student hackathon</span><span class="role__dates">JAN – FEB 2026</span></li>
+          <li class="role glass glass--glow reveal"><span class="role__title">Finance Coordinator</span><span class="role__org"><a href="https://www.essualberta.ca/" target="_blank" rel="noopener noreferrer">Engineering Students' Society ↗</a> — reimbursements, bookkeeping, funding</span><span class="role__dates">OCT – DEC 2025</span></li>
         </ul>
       </aside>
     </div>
@@ -132,6 +124,8 @@
 
     <footer class="footer">
       <span>Copyright © <span id="year">2026</span> Rayner Dcunha</span>
+      <a href="/privacy">Privacy</a>
+      <a href="/accessibility">Accessibility</a>
     </footer>
   </main>
   <script src="/assets/vendor/gsap.min.js" defer></script>

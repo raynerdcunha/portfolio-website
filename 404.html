@@ -19,24 +19,16 @@
   <link rel="icon" href="/assets/images/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/fonts.css">
   <link rel="stylesheet" href="/assets/css/main.css">
-  <script>
-    (function () {
-      var r = document.documentElement; r.classList.add('js');
-      var seen = false; try { seen = sessionStorage.getItem('rd-loader-seen') === '1'; } catch (e) {}
-      var rm = false; // site effects always run
-      var wiping = false; try { wiping = sessionStorage.getItem('rd-wipe') === '1'; } catch (e) {}
-      if (wiping && !rm) r.classList.add('is-wiping');
-      else if (!seen && !rm) r.classList.add('is-loading');
-    })();
-  </script>
+  <script src="/assets/js/boot.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <div class="space" aria-hidden="true"></div>
-  <main class="lost page-in">
+  <main id="main" class="lost page-in">
     <div>
       <p class="hud" style="justify-content:center">Signal lost</p>
       <p class="lost__code grad-text">404</p>
@@ -48,6 +40,6 @@
       </div>
     </div>
   </main>
-  <script>var m=document.getElementById('missing'); if(m) m.textContent=location.pathname.replace(/^\//,'')||'this-page';</script>
+  <script src="/assets/js/404.js"></script>
 </body>
 </html>

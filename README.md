@@ -30,7 +30,8 @@ It's a dark, animated, multi-page static site with **no framework and no build s
 - **Interactive skills knowledge graph**: a live physics simulation written from scratch (no graph library). Drag nodes, hover to see where a skill was used, click a category to hide it.
 - **Serverless contact form**: Google Apps Script emails each message to you and sends the visitor a confirmation. No backend server, and visitors don't sign in.
 - **Live LeetCode stat**: a small Vercel serverless function (`api/leetcode.js`) reads the public solved counts and caches them for 3 minutes. The home page shows the total, the easy/medium/hard split and a colored ring, and links to the profile. If it can't reach LeetCode, the page keeps its built-in fallback numbers.
-- **"My side / your side" panel**: the owner's local time and weather next to the visitor's ([Open-Meteo](https://open-meteo.com), free, no API key, no location prompt).
+- **"My side / your side" panel**: the owner\'s local time and weather next to the visitor\'s. The browser only talks to this site: `api/weather.js` asks [Open-Meteo](https://open-meteo.com) server-side, so the visitor\'s IP address is never sent to a third party. No API key and no location prompt.
+- **Privacy and security by default**: no cookies, analytics or third-party requests on page load (fonts are self-hosted), a strict Content-Security-Policy plus HSTS and Permissions-Policy in `vercel.json`, a `/privacy` page, an `/accessibility` statement and `/.well-known/security.txt`.
 - **GSAP motion**: page-wipe transitions, decode-text intro, scroll reveals, magnetic buttons, 3D card tilt.
 - **Clean URLs** (`/projects`, `/skills`) that work on Vercel and any static server.
 - **Search and AI-search ready**: a unique title and description per page, OpenGraph and Twitter cards, JSON-LD structured data, `sitemap.xml`, `robots.txt`, and an `llms.txt` summary for AI tools.
@@ -65,12 +66,16 @@ Then open **http://localhost:8000**.
 ├── projects/index.html             # Project cards (filterable)
 ├── skills/index.html               # Knowledge graph + list view, certifications
 ├── contact/index.html              # Contact form + links
+├── privacy/index.html              # Privacy notice
+├── accessibility/index.html        # Accessibility statement
 ├── 404.html                        # "Lost in the Domain?"
 ├── robots.txt, sitemap.xml         # Search engine hints
 ├── llms.txt                        # Plain-text site summary for AI tools
 ├── favicon.ico, site.webmanifest   # Icons for browsers and phones
+├── .well-known/security.txt        # How to report a security issue
 ├── api/
-│   └── leetcode.js                 # Serverless function: live LeetCode counts (Vercel)
+│   ├── leetcode.js                 # Serverless function: live LeetCode counts (Vercel)
+│   └── weather.js                  # Serverless function: weather proxy, keeps visitor IPs from Open-Meteo
 ├── assets/
 │   ├── css/main.css                # All styles; colour tokens are at the top
 │   ├── js/
@@ -83,6 +88,7 @@ Then open **http://localhost:8000**.
 │   │   ├── skills-data.js          # Skills content (graph + list read from here)
 │   │   ├── skills-graph.js         # Knowledge graph engine
 │   │   └── contact-form.js         # Form validation + sending
+│   ├── fonts/                      # Self-hosted Inter, JetBrains Mono, Space Grotesk (SIL OFL)
 │   ├── vendor/                     # GSAP + ScrollTrigger
 │   ├── images/                     # Favicons, app icons, social preview image
 │   └── resume/                     # Résumé PDF

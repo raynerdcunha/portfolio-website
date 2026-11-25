@@ -2,7 +2,8 @@
  * time-weather.js — home page "My side / Your side" panel.
  * Shows Rayner's local time + weather (Edmonton) next to the visitor's.
  * The visitor's city is guessed from their browser time zone (e.g. America/Toronto -> Toronto),
- * so no location permission prompt is ever shown. Weather comes from Open-Meteo (free, no API key).
+ * so no location permission prompt is ever shown. Weather comes from this site's own /api/weather,
+ * which asks Open-Meteo server-side, so the visitor's IP address is never sent to a third party.
  * If anything fails, the clocks still work and weather shows a dash.
  */
 (function () {
@@ -85,25 +86,19 @@
   function getJSON(url) {
     return fetch(url).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
   }
-  function forecast(lat, lon) {
-    return getJSON('https://api.open-meteo.com/v1/forecast?latitude=' + lat + '&longitude=' + lon +
-      '&current=temperature_2m,weather_code,is_day&timezone=auto');
-  }
+  function toDisplay(w) { return { temperature_2m: w.temp, weather_code: w.code, is_day: w.isDay }; }
 
-  forecast(ME.lat, ME.lon).then(function (d) { showWeather('me', d, false); }).catch(function () { showNoWeather('me'); });
+  getJSON('/api/weather?me=1').then(function (d) { showWeather('me', { current: toDisplay(d) }, false); }).catch(function () { showNoWeather('me'); });
 
   if (visitorTz === ME.tz) {
     el('you', 'city').textContent = 'Edmonton area';
-    forecast(ME.lat, ME.lon).then(function (d) { showWeather('you', d, false); }).catch(function () { showNoWeather('you'); });
+    getJSON('/api/weather?me=1').then(function (d) { showWeather('you', { current: toDisplay(d) }, false); }).catch(function () { showNoWeather('you'); });
   } else if (tzCity) {
-    getJSON('https://geocoding-api.open-meteo.com/v1/search?count=1&language=en&format=json&name=' + encodeURIComponent(tzCity))
-      .then(function (g) {
-        var place = g && g.results && g.results[0];
-        if (!place) throw new Error('no place');
-        el('you', 'city').textContent = place.name + (place.country_code ? ', ' + place.country_code : '');
-        return forecast(place.latitude, place.longitude);
+    getJSON('/api/weather?place=' + encodeURIComponent(tzCity))
+      .then(function (d) {
+        el('you', 'city').textContent = d.name + (d.country ? ', ' + d.country : '');
+        showWeather('you', { current: toDisplay(d) }, US_TZ.test(visitorTz));
       })
-      .then(function (d) { showWeather('you', d, US_TZ.test(visitorTz)); })
       .catch(function () { showNoWeather('you'); });
   } else {
     showNoWeather('you');

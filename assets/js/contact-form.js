@@ -21,8 +21,35 @@
     slow_down: 'You just sent a message — please wait a couple of minutes before sending another.',
     daily_limit: 'My inbox is busy today. Please email me directly at ' + FALLBACK_EMAIL + '.',
     bad_email: 'Please enter a valid email address.',
-    missing_fields: 'Please fill in all fields.'
+    missing_fields: 'Please fill in all fields.',
+    captcha_failed: 'The spam check failed. Please try again.',
+    captcha_missing: 'Please complete the spam check first.'
   };
+
+  // Optional Cloudflare Turnstile spam check. It only turns on when a site key is set in
+  // contact/index.html (data-sitekey on #cf-turnstile), and Cloudflare's script is only loaded
+  // the first time the visitor touches the form, so just opening the page contacts nobody.
+  var box = document.getElementById('cf-turnstile');
+  var siteKey = box ? (box.getAttribute('data-sitekey') || '').trim() : '';
+  var widgetId = null, tsLoading = false;
+  function loadTurnstile() {
+    if (!siteKey || tsLoading) return;
+    tsLoading = true;
+    window.__tsReady = function () {
+      widgetId = window.turnstile.render(box, { sitekey: siteKey, theme: 'dark' });
+    };
+    var s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__tsReady';
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  }
+  form.addEventListener('focusin', loadTurnstile, { once: true });
+
+  // Small client-side cooldown (the real limits are enforced by the script on the server).
+  var COOLDOWN_MS = 60000;
+  function coolingDown() {
+    try { return Date.now() - Number(sessionStorage.getItem('rd-form-sent') || 0) < COOLDOWN_MS; } catch (e) { return false; }
+  }
 
   function setStatus(message, type) {
     status.textContent = message;
@@ -54,6 +81,11 @@
     e.preventDefault();
     if (!validate()) return;
     if (form.elements._gotcha && form.elements._gotcha.value) return; // bot
+    if (coolingDown()) { setStatus(ERRORS.slow_down, 'error'); return; }
+    if (siteKey) {
+      var tok = form.elements['cf-turnstile-response'];
+      if (!tok || !tok.value) { setStatus(ERRORS.captcha_missing, 'error'); loadTurnstile(); return; }
+    }
 
     // Not set up yet: open the visitor's email app with everything filled in.
     if (form.action.indexOf('YOUR_SCRIPT_ID') !== -1) {
@@ -75,6 +107,7 @@
       .then(function (data) {
         if (data && data.ok) {
           form.reset();
+          try { sessionStorage.setItem('rd-form-sent', String(Date.now())); } catch (e) {}
           setStatus('Message sent! Check your inbox for a confirmation — I\'ll get back to you soon.', 'ok');
         } else {
           setStatus(ERRORS[data && data.error] || 'Something went wrong. Please email me at ' + FALLBACK_EMAIL + '.', 'error');
@@ -86,6 +119,7 @@
       .then(function () {
         submitBtn.disabled = false;
         submitBtn.innerHTML = submitHtml;
+        if (widgetId !== null && window.turnstile) window.turnstile.reset(widgetId); // tokens are single-use
       });
   });
 })();
