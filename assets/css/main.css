@@ -354,7 +354,7 @@ code { font-family: var(--font-mono); font-size: 0.86em; color: var(--cyan); }
 .proj__note { font: 500 0.74rem var(--font-mono); color: var(--dim); }
 
 /* Visual: live terminal */
-.term { position: absolute; inset: 0; padding: 22px 26px; font: 0.88rem/1.75 var(--font-mono); color: var(--text); white-space: pre-wrap; }
+.term { position: absolute; inset: 0; padding: 22px 26px; font: 0.88rem/1.75 var(--font-mono); color: var(--text); white-space: pre-wrap; overflow: hidden; }
 .term .p { color: var(--lime); }
 .term .o { color: var(--muted); }
 .term .ok { color: var(--cyan); }
@@ -653,3 +653,5 @@ code { font-family: var(--font-mono); font-size: 0.86em; color: var(--cyan); }
 .sprite-hidden{position:absolute}
 .mt-18{margin-top:18px}
 .hud--center,.home__actions--center{justify-content:center}
+
+.form-note { margin: 12px 0 0; font: 0.78rem/1.5 var(--font-mono); color: var(--dim); }

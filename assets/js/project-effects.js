@@ -37,6 +37,7 @@
     function draw(current) {
       var html = lines.slice(-7).join('\n');
       term.innerHTML = (html ? html + '\n' : '') + '<span class="p">flameo$</span> ' + escapeHtml(current) + '<span class="term__cursor"></span>';
+      term.scrollTop = term.scrollHeight; // keep the newest line (the one being typed) in view
     }
 
     if (reduceMotion) {
