@@ -19,7 +19,7 @@
 
 # Rayner's Domain: Portfolio Website
 
-The source code for [www.raynerdcunha.com](https://www.raynerdcunha.com), the personal portfolio of **Rayner Dcunha** (Computer Engineering co-op, University of Alberta).
+The source code for [www.raynerdcunha.com](https://www.raynerdcunha.com), the personal portfolio of **Rayner Dcunha** (Computer Engineering Co-Op, University of Alberta).
 
 It's a dark, animated, multi-page static site with **no framework and no build step**: plain HTML, CSS and JavaScript, plus one small serverless function. You can download it, run it locally and use it as a starting point for your own portfolio.
 

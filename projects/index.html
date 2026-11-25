@@ -16,13 +16,13 @@
   <meta property="og:image" content="https://www.raynerdcunha.com/assets/images/og-preview.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Rayner's Domain: portfolio of Rayner Dcunha, Computer Engineering co-op student">
+  <meta property="og:image:alt" content="Rayner's Domain: portfolio of Rayner Dcunha, Computer Engineering Co-Op student">
   <meta property="og:locale" content="en_CA">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Projects — FlameoShell, Badgepath &amp; More | Rayner Dcunha">
   <meta name="twitter:description" content="Projects by Rayner Dcunha: FlameoShell (Unix shell in C), Badgepath (GitHub achievement tracker), an ML power-grid dashboard, an embedded IMU 3D wheel, a 2nd-place LRT reporting site and an Android app.">
   <meta name="twitter:image" content="https://www.raynerdcunha.com/assets/images/og-preview.png">
-  <meta name="twitter:image:alt" content="Rayner's Domain: portfolio of Rayner Dcunha, Computer Engineering co-op student">
+  <meta name="twitter:image:alt" content="Rayner's Domain: portfolio of Rayner Dcunha, Computer Engineering Co-Op student">
   <meta name="theme-color" content="#05060d">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
   <link rel="icon" href="/assets/images/rd-logo.svg" type="image/svg+xml">
@@ -66,7 +66,7 @@
         </ol>
       </nav>
       <div class="taskbar__right">
-        <span class="taskbar__status"><span class="pulse" aria-hidden="true"></span>Co-Op / Internship · Winter 2027</span>
+        <span class="taskbar__status"><span class="pulse" aria-hidden="true"></span>Co-Op / Internship · Spring/Summer 2027</span>
         <a class="taskbar__resume magnetic" href="/resume" target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span><span class="visually-hidden">(PDF, opens in a new tab)</span></a>
       </div>
     </div>
@@ -92,7 +92,32 @@
     <!-- To use a real screenshot, replace a card's visual with:
          <img src="/assets/images/projects/flameoshell-demo.webp" alt="FlameoShell running in the browser" loading="lazy"> -->
     <div class="bento">
-      <article class="proj proj--xl tilt glass glass--glow reveal" data-tags="systems web">
+      <article class="proj proj--wide tilt glass glass--glow reveal" data-tags="ai web">
+        <div class="proj__visual">
+          <div class="race" data-run>
+            <div class="race__row"><span>Exhaustive AC search</span><span class="race__track"><span class="race__bar race__bar--slow"></span></span><span>83 min</span></div>
+            <div class="race__row"><span>My GNN surrogate</span><span class="race__track"><span class="race__bar race__bar--fast"></span></span><span>48 s</span></div>
+            <div class="race__big grad-text">103× faster</div>
+          </div>
+        </div>
+        <div class="proj__body">
+          <p class="proj__meta"><b>AI / ML · RESEARCH</b><span>JAN – AUG 2026</span></p>
+          <h2 class="proj__title">IEEE 33-Bus Grid Dashboard</h2>
+          <p class="proj__problem">Finding the lowest-loss layout for a power grid by brute force is too slow for operators. My model finds near-optimal layouts in seconds, and an LLM-agent dashboard explains them.</p>
+          <ul class="proj__points">
+            <li>Graph-Transformer screens 50,751 candidate topologies in one pass — 83 min to 48 s (103×)</li>
+            <li>Validated against pandapower across 16 operating points</li>
+            <li>Live-chart frontend + FastAPI/Node.js REST API, state in SQLite, results as JSONL</li>
+          </ul>
+          <ul class="chips"><li>GNN</li><li>FastAPI</li><li>Node.js</li><li>LLM Agents</li></ul>
+          <div class="proj__links">
+            <a class="proj__link proj__link--live" href="https://www.mdpi.com/4118630" target="_blank" rel="noopener">Read the paper ↗</a>
+            <span class="proj__note">Research code (private) · walkthrough on request</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj proj--wide tilt glass glass--glow reveal" data-tags="systems web">
         <div class="proj__visual"><pre id="flameo-term" class="term" aria-label="Animated FlameoShell terminal session"><span class="p">flameo$</span> sleep 30 &amp;</pre></div>
         <div class="proj__body">
           <p class="proj__meta"><b>SYSTEMS · C</b><span>SEP – OCT 2026</span></p>
@@ -108,39 +133,6 @@
             <a class="proj__link" href="https://github.com/raynerdcunha/flameoshell" target="_blank" rel="noopener">GitHub ↗</a>
             <a class="proj__link proj__link--live" href="https://flameoshell.vercel.app" target="_blank" rel="noopener">Live demo ↗</a>
           </div>
-        </div>
-      </article>
-
-      <article class="proj tilt glass glass--glow reveal" data-tags="web" style="--d:.06s">
-        <div class="proj__visual"><div class="vis-center"><span class="badge2">2nd</span><span class="vis-cap">UAEC 2025 · PROGRAMMING</span></div></div>
-        <div class="proj__body">
-          <p class="proj__meta"><b>WEB · TEAM OF 4</b><span>NOV 2025</span></p>
-          <h2 class="proj__title">LRT Accessibility &amp; Safety Reporter</h2>
-          <p class="proj__problem">Riders had no easy way to report broken elevators or unsafe stations. We built a reporting site plus an inspector triage dashboard — and placed 2nd.</p>
-          <ul class="chips"><li>JS</li><li>HTML/CSS</li><li>Dashboard</li></ul>
-          <div class="proj__links"><span class="proj__note">Competition build</span></div>
-        </div>
-      </article>
-
-      <article class="proj tilt glass glass--glow reveal" data-tags="hardware systems" style="--d:.12s">
-        <div class="proj__visual"><div class="vis-center"><svg class="f1-wheel" viewBox="0 0 200 120" aria-hidden="true">
-            <defs><linearGradient id="f1g" x1="0" x2="1"><stop offset="0" stop-color="#22e3ff"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs>
-            <path d="M30 30 Q30 12 52 12 H148 Q170 12 170 30 V62 Q170 96 140 104 L122 108 H78 L60 104 Q30 96 30 62 Z" fill="#0d1124" stroke="url(#f1g)" stroke-width="3"/>
-            <rect x="14" y="26" width="22" height="62" rx="11" fill="#151a33" stroke="url(#f1g)" stroke-width="2.5"/>
-            <rect x="164" y="26" width="22" height="62" rx="11" fill="#151a33" stroke="url(#f1g)" stroke-width="2.5"/>
-            <rect x="72" y="26" width="56" height="30" rx="5" fill="#05060d" stroke="#22e3ff" stroke-width="1.5"/>
-            <text x="100" y="47" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700" fill="#22e3ff">7</text>
-            <circle cx="56" cy="40" r="6" fill="#ff5fd2"/><circle cx="144" cy="40" r="6" fill="#6ee7b7"/>
-            <circle cx="58" cy="70" r="5" fill="#a78bfa"/><circle cx="142" cy="70" r="5" fill="#22e3ff"/>
-            <circle cx="84" cy="80" r="4" fill="#60a5fa"/><circle cx="116" cy="80" r="4" fill="#ff5fd2"/>
-            <g class="f1-leds"><circle cx="78" cy="19" r="2.6"/><circle cx="88" cy="19" r="2.6"/><circle cx="98" cy="19" r="2.6"/><circle cx="108" cy="19" r="2.6"/><circle cx="118" cy="19" r="2.6"/></g>
-          </svg><span class="vis-cap">GYRO-Z → STEERING ANGLE · LIVE</span></div></div>
-        <div class="proj__body">
-          <p class="proj__meta"><b>EMBEDDED</b><span>JUN – JUL 2026</span></p>
-          <h2 class="proj__title">IMU-Driven 3D Wheel</h2>
-          <p class="proj__problem">An STM32 board streams motion data and a web page spins a custom 3D wheel in real time as you move it.</p>
-          <ul class="chips"><li>STM32</li><li>MPU-6050</li><li>C</li><li>HTML</li></ul>
-          <div class="proj__links"><span class="proj__note">Hardware · demo video soon</span></div>
         </div>
       </article>
 
@@ -189,32 +181,40 @@
         </div>
       </article>
 
-      <article class="proj proj--wide tilt glass glass--glow reveal" data-tags="ai web">
-        <div class="proj__visual">
-          <div class="race" data-run>
-            <div class="race__row"><span>Exhaustive AC search</span><span class="race__track"><span class="race__bar race__bar--slow"></span></span><span>83 min</span></div>
-            <div class="race__row"><span>My GNN surrogate</span><span class="race__track"><span class="race__bar race__bar--fast"></span></span><span>48 s</span></div>
-            <div class="race__big grad-text">103× faster</div>
-          </div>
-        </div>
+      <article class="proj tilt glass glass--glow reveal" data-tags="hardware systems" style="--d:.12s">
+        <div class="proj__visual"><div class="vis-center"><svg class="f1-wheel" viewBox="0 0 200 120" aria-hidden="true">
+            <defs><linearGradient id="f1g" x1="0" x2="1"><stop offset="0" stop-color="#22e3ff"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs>
+            <path d="M30 30 Q30 12 52 12 H148 Q170 12 170 30 V62 Q170 96 140 104 L122 108 H78 L60 104 Q30 96 30 62 Z" fill="#0d1124" stroke="url(#f1g)" stroke-width="3"/>
+            <rect x="14" y="26" width="22" height="62" rx="11" fill="#151a33" stroke="url(#f1g)" stroke-width="2.5"/>
+            <rect x="164" y="26" width="22" height="62" rx="11" fill="#151a33" stroke="url(#f1g)" stroke-width="2.5"/>
+            <rect x="72" y="26" width="56" height="30" rx="5" fill="#05060d" stroke="#22e3ff" stroke-width="1.5"/>
+            <text x="100" y="47" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700" fill="#22e3ff">7</text>
+            <circle cx="56" cy="40" r="6" fill="#ff5fd2"/><circle cx="144" cy="40" r="6" fill="#6ee7b7"/>
+            <circle cx="58" cy="70" r="5" fill="#a78bfa"/><circle cx="142" cy="70" r="5" fill="#22e3ff"/>
+            <circle cx="84" cy="80" r="4" fill="#60a5fa"/><circle cx="116" cy="80" r="4" fill="#ff5fd2"/>
+            <g class="f1-leds"><circle cx="78" cy="19" r="2.6"/><circle cx="88" cy="19" r="2.6"/><circle cx="98" cy="19" r="2.6"/><circle cx="108" cy="19" r="2.6"/><circle cx="118" cy="19" r="2.6"/></g>
+          </svg><span class="vis-cap">GYRO-Z → STEERING ANGLE · LIVE</span></div></div>
         <div class="proj__body">
-          <p class="proj__meta"><b>AI / ML · RESEARCH</b><span>JAN – AUG 2026</span></p>
-          <h2 class="proj__title">IEEE 33-Bus Grid Dashboard</h2>
-          <p class="proj__problem">Finding the lowest-loss layout for a power grid by brute force is too slow for operators. My model finds near-optimal layouts in seconds, and an LLM-agent dashboard explains them.</p>
-          <ul class="proj__points">
-            <li>Graph-Transformer screens 50,751 candidate topologies in one pass — 83 min to 48 s (103×)</li>
-            <li>Validated against pandapower across 16 operating points</li>
-            <li>Live-chart frontend + FastAPI/Node.js REST API, state in SQLite, results as JSONL</li>
-          </ul>
-          <ul class="chips"><li>GNN</li><li>FastAPI</li><li>Node.js</li><li>LLM Agents</li></ul>
-          <div class="proj__links">
-            <a class="proj__link proj__link--live" href="https://www.mdpi.com/4118630" target="_blank" rel="noopener">Read the paper ↗</a>
-            <span class="proj__note">Research code (private) · walkthrough on request</span>
-          </div>
+          <p class="proj__meta"><b>EMBEDDED</b><span>JUN – JUL 2026</span></p>
+          <h2 class="proj__title">IMU-Driven 3D Wheel</h2>
+          <p class="proj__problem">An STM32 board streams motion data and a web page spins a custom 3D wheel in real time as you move it.</p>
+          <ul class="chips"><li>STM32</li><li>MPU-6050</li><li>C</li><li>HTML</li></ul>
+          <div class="proj__links"><span class="proj__note">Hardware · demo video soon</span></div>
         </div>
       </article>
 
-      <article class="proj proj--wide tilt glass glass--glow reveal" data-tags="mobile" style="--d:.08s">
+      <article class="proj tilt glass glass--glow reveal" data-tags="web" style="--d:.06s">
+        <div class="proj__visual"><div class="vis-center"><span class="badge2">2nd</span><span class="vis-cap">UAEC 2025 · PROGRAMMING</span></div></div>
+        <div class="proj__body">
+          <p class="proj__meta"><b>WEB · TEAM OF 4</b><span>NOV 2025</span></p>
+          <h2 class="proj__title">LRT Accessibility &amp; Safety Reporter</h2>
+          <p class="proj__problem">Riders had no easy way to report broken elevators or unsafe stations. We built a reporting site plus an inspector triage dashboard — and placed 2nd.</p>
+          <ul class="chips"><li>JS</li><li>HTML/CSS</li><li>Dashboard</li></ul>
+          <div class="proj__links"><span class="proj__note">Competition build</span></div>
+        </div>
+      </article>
+
+      <article class="proj tilt glass glass--glow reveal" data-tags="mobile" style="--d:.08s">
         <div class="proj__visual"><div class="vis-center"><span class="choice-q grad-text">Omakase?</span><span class="choice"><span class="is-on">Yes</span><span>No</span><span>Maybe</span></span></div></div>
         <div class="proj__body">
           <p class="proj__meta"><b>ANDROID</b><span>SEP 2026</span></p>
@@ -228,7 +228,6 @@
 
     <div class="more glass reveal">
       <span>Also built: <strong>Active-Ape</strong>, a Chrome extension (team of 4) that locks your tab behind a challenge after prolonged sitting.</span>
-      <a class="proj__link" href="https://github.com/raynerdcunha" target="_blank" rel="noopener">github.com/raynerdcunha ↗</a>
     </div>
 
     <footer class="footer">

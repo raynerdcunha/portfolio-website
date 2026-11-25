@@ -1,6 +1,6 @@
 # Rayner Dcunha
 
-> Rayner Dcunha is a Computer Engineering co-op student at the University of Alberta building ML systems, full-stack web apps and systems software. He is looking for a co-op/internship starting Winter 2027. This site, Rayner's Domain, is his personal portfolio.
+> Rayner Dcunha is a Computer Engineering Co-Op student at the University of Alberta building ML systems, full-stack web apps and systems software. He is looking for a Co-Op/internship starting Spring/Summer 2027. This site, Rayner's Domain, is his personal portfolio.
 
 ## Pages
 
@@ -8,7 +8,7 @@
 - [Experience](https://www.raynerdcunha.com/experience): AI/ML Research Assistant Intern and Dean's Research Award Research Assistant at the University of Alberta, plus leadership roles
 - [Projects](https://www.raynerdcunha.com/projects): selected projects with GitHub and live links
 - [Skills](https://www.raynerdcunha.com/skills): interactive knowledge graph of Python, JavaScript, C, SQL, FastAPI, GNNs, LLM agents and more
-- [Contact](https://www.raynerdcunha.com/contact): co-op and internship inquiries for Winter 2027
+- [Contact](https://www.raynerdcunha.com/contact): Co-Op and internship inquiries for Spring/Summer 2027
 - [Resume (PDF)](https://www.raynerdcunha.com/resume): current resume
 
 ## Projects
