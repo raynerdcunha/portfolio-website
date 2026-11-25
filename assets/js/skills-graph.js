@@ -275,7 +275,7 @@
       box.className = 'list-group';
       box.setAttribute('data-cluster', c.id);
       var h = document.createElement('h4');
-      h.innerHTML = '<span class="swatch" style="background: var(--c-' + c.id + ')"></span>';
+      var sw = document.createElement('span'); sw.className = 'swatch'; sw.style.background = 'var(--c-' + c.id + ')'; h.appendChild(sw);
       h.appendChild(document.createTextNode(c.label));
       var ul = document.createElement('ul');
       data.skills.filter(function (s) { return s.cluster === c.id; })
@@ -299,7 +299,7 @@
       btn.type = 'button'; btn.className = 'legend__toggle';
       btn.setAttribute('aria-pressed', 'true');
       btn.setAttribute('aria-label', 'Hide ' + c.label);
-      btn.innerHTML = '<span class="swatch" style="background: var(--c-' + c.id + ')"></span>';
+      var sw2 = document.createElement('span'); sw2.className = 'swatch'; sw2.style.background = 'var(--c-' + c.id + ')'; btn.appendChild(sw2);
       btn.appendChild(document.createTextNode(c.label));
       btn.addEventListener('click', function () {
         hidden[c.id] = !hidden[c.id];

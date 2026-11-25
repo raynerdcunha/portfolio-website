@@ -641,10 +641,15 @@ code { font-family: var(--font-mono); font-size: 0.86em; color: var(--cyan); }
 .skip-link:focus { top: 12px; }
 .footer a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 .footer a:hover, .footer a:focus-visible { color: var(--cyan); }
-.cf-turnstile-box { margin-top: 14px; min-height: 0; }
 .legal { max-width: 78ch; }
 .legal h2 { font-size: 1.25rem; margin: 34px 0 10px; }
 .legal p, .legal li { color: var(--muted); }
 .legal ul { padding-left: 1.2em; }
 .legal a { text-decoration: underline; text-underline-offset: 3px; }
 .legal .legal__date { font: 0.78rem var(--font-mono); color: var(--dim); }
+
+/* Utility classes (replace inline styles for the strict CSP) */
+.d04{--d:.04s}.d06{--d:.06s}.d08{--d:.08s}.d12{--d:.12s}.d16{--d:.16s}.d18{--d:.18s}
+.sprite-hidden{position:absolute}
+.mt-18{margin-top:18px}
+.hud--center,.home__actions--center{justify-content:center}

@@ -146,12 +146,14 @@
     intro
       .call(startDecode('.page-head .hud', { perChar: 1, lead: 4 }), null, '-=0.4')
       .from('.page-title', { y: 40, opacity: 0, duration: 0.8, ease: 'power4.out' }, '-=0.3')
-      .from('.page-lead', { y: 20, opacity: 0, duration: 0.6 }, '-=0.5')
-      .from('.filters .filter', { y: 14, opacity: 0, stagger: 0.05, duration: 0.4 }, '-=0.3');
+      .from('.page-lead', { y: 20, opacity: 0, duration: 0.6 }, '-=0.5');
+    if ($('.filters .filter')) intro.from('.filters .filter', { y: 14, opacity: 0, stagger: 0.05, duration: 0.4 }, '-=0.3');
   }
 
   /* ---------- Scroll reveals (batched, staggered) ---------- */
-  if (seenPage) {
+  if (!$('.reveal')) {
+    /* nothing to reveal on this page */
+  } else if (seenPage) {
     gsap.set('.reveal', { opacity: 1, y: 0 });
   } else if (window.ScrollTrigger) {
     gsap.set('.reveal', { opacity: 0, y: 40 });
