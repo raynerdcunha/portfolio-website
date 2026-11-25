@@ -655,3 +655,8 @@ code { font-family: var(--font-mono); font-size: 0.86em; color: var(--cyan); }
 .hud--center,.home__actions--center{justify-content:center}
 
 .form-note { margin: 12px 0 0; font: 0.78rem/1.5 var(--font-mono); color: var(--dim); }
+
+/* Visitors who ask their device for less motion get no looping or sliding animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

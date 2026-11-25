@@ -9,7 +9,7 @@
   var canvas = document.getElementById('space-network');
   if (!canvas || !canvas.getContext) return;
   var ctx = canvas.getContext('2d');
-  var reduceMotion = false; // effects always run (site design choice)
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; // respect the visitor's OS setting
   var dpr = Math.min(window.devicePixelRatio || 1, 2);
   var W, H, nodes = [], mouse = { x: -9999, y: -9999 };
   var COLORS = ['34,227,255', '167,139,250', '255,95,210'];

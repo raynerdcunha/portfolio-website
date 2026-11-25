@@ -9,7 +9,7 @@
   'use strict';
 
   var root = document.documentElement;
-  var reduce = false; // effects always run (site design choice)
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; // respect the visitor's OS setting
   var $ = function (s, ctx) { return (ctx || document).querySelector(s); };
   var $$ = function (s, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(s)); };
 
@@ -49,7 +49,7 @@
   onScroll();
 
   if (reduce) {
-    gsap.set('.reveal', { opacity: 1, y: 0 });
+    if ($('.reveal')) gsap.set('.reveal', { opacity: 1, y: 0 });
     root.classList.remove('is-wiping');
     return;
   }

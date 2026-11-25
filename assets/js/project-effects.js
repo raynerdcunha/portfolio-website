@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  var reduceMotion = false; // effects always run (site design choice)
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; // respect the visitor's OS setting
 
   /* ---------- Filters ---------- */
   var filters = document.querySelectorAll('.filter');

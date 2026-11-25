@@ -30,7 +30,7 @@ It's a dark, animated, multi-page static site with **no framework and no build s
 - **Interactive skills knowledge graph**: a live physics simulation written from scratch (no graph library). Drag nodes, hover to see where a skill was used, click a category to hide it.
 - **Serverless contact form**: Google Apps Script emails each message to you and sends the visitor a confirmation. No backend server, and visitors don't sign in.
 - **Live LeetCode stat**: a small Vercel serverless function (`api/leetcode.js`) reads the public solved counts and caches them for 3 minutes. The home page shows the total, the easy/medium/hard split and a colored ring, and links to the profile. If it can't reach LeetCode, the page keeps its built-in fallback numbers.
-- **"My side / your side" panel**: the owner\'s local time and weather next to the visitor\'s. The browser only talks to this site: `api/weather.js` asks [Open-Meteo](https://open-meteo.com) server-side, so the visitor\'s IP address is never sent to a third party. No API key and no location prompt.
+- **"My side / your side" panel**: the owner's local time and weather next to the visitor's. The browser only talks to this site: `api/weather.js` asks [Open-Meteo](https://open-meteo.com) server-side, so the visitor's IP address is never sent to a third party. No API key and no location prompt.
 - **Privacy and security by default**: no cookies, analytics or third-party requests on page load (fonts are self-hosted), a strict Content-Security-Policy plus HSTS and Permissions-Policy in `vercel.json`, and `/.well-known/security.txt`.
 - **GSAP motion**: page-wipe transitions, decode-text intro, scroll reveals, magnetic buttons, 3D card tilt.
 - **Clean URLs** (`/projects`, `/skills`) that work on Vercel and any static server.
@@ -54,7 +54,7 @@ Then open **http://localhost:8000**.
 
 > Open it through a local server like the one above, not by double-clicking `index.html`. The pages use root paths (`/assets/...`) that only resolve when served.
 >
-> A plain static server doesn't run `api/leetcode.js`, so locally the LeetCode stat shows its fallback numbers. To test the live version, use [`vercel dev`](https://vercel.com/docs/cli/dev) or check the deployed site.
+> A plain static server doesn't run `api/leetcode.js` or `api/weather.js`, so locally the LeetCode stat shows its fallback numbers and the weather shows a dash. To test the live version, use [`vercel dev`](https://vercel.com/docs/cli/dev) or check the deployed site.
 
 ---
 
@@ -75,8 +75,12 @@ Then open **http://localhost:8000**.
 │   ├── leetcode.js                 # Serverless function: live LeetCode counts (Vercel)
 │   └── weather.js                  # Serverless function: weather proxy, keeps visitor IPs from Open-Meteo
 ├── assets/
-│   ├── css/main.css                # All styles; colour tokens are at the top
+│   ├── css/
+│   │   ├── main.css                # All styles; colour tokens are at the top
+│   │   └── fonts.css               # @font-face rules for the self-hosted fonts
 │   ├── js/
+│   │   ├── boot.js                 # Adds the `js` class before the page paints (no inline script, for the CSP)
+│   │   ├── 404.js                  # 404 page script (no inline script, for the CSP)
 │   │   ├── motion.js               # Taskbar, page wipe, intro, scroll reveals, tilt, magnetic buttons
 │   │   ├── site-shell.js           # Loader, card glow, counters, typed text
 │   │   ├── space-network.js        # Home background
@@ -95,7 +99,8 @@ Then open **http://localhost:8000**.
 ├── docs/readme-banner.svg          # README banner
 ├── LICENSE                         # MIT (code) + content copyright
 ├── vercel.json                     # Clean URLs, security headers, caching
-└── .vercelignore                   # Keeps the script, docs + README out of the deploy
+├── .vercelignore                   # Keeps the script, docs + README out of the deploy
+└── .gitignore                      # Files Git should skip
 ```
 
 ---
@@ -116,7 +121,7 @@ The text, résumé and branding in this repo belong to Rayner Dcunha (see [Licen
 | Colours | CSS variables at the top of `assets/css/main.css` |
 | Logo / favicon | `assets/images/rd-logo.svg`, `favicon-32.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, and `favicon.ico` in the root |
 | LeetCode username (live stat) | `USERNAME` at the top of `api/leetcode.js`; the fallback numbers are in `index.html` |
-| Your city for time/weather | the `ME` coordinates and time zone at the top of `assets/js/time-weather.js` |
+| Your city for time/weather | `ME` (time zone and name) at the top of `assets/js/time-weather.js`, and `ME` (coordinates) at the top of `api/weather.js` |
 | Site URL | `canonical` / `og:` / `twitter:` tags and the JSON-LD block in each page, `sitemap.xml`, `robots.txt`, `llms.txt` |
 
 The taskbar is copied into each page. If you add or rename a page, update it in all of them.
@@ -148,14 +153,14 @@ The script has a spam trap and rate limits built in: one message per sender ever
    - **Install Command:** *(empty)*
 4. Click **Deploy**. After that, every push to `main` redeploys automatically.
 
-Any other static host (Netlify, GitHub Pages, Cloudflare Pages) works too, but only Vercel runs `api/leetcode.js`; elsewhere the LeetCode stat just shows its fallback numbers. `vercel.json` only adds Vercel-specific extras.
+Any other static host (Netlify, GitHub Pages, Cloudflare Pages) works too, but only Vercel runs `api/leetcode.js` and `api/weather.js`; elsewhere the LeetCode stat shows its fallback numbers and the weather shows a dash. `vercel.json` only adds Vercel-specific extras.
 
 ---
 
 ## Notes
 
 - Designed for laptop and desktop screens; phones get a basic stacked layout.
-- Animations always run, even when the OS "reduce motion" setting is on (a design choice; change it in the JS files if you prefer).
+- Visitors who turn on the OS "reduce motion" setting get no animations: content shows immediately and the terminal and background are static (checked in `motion.js`, `site-shell.js`, `project-effects.js` and `space-network.js`).
 
 ---
 
