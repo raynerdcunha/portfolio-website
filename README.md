@@ -28,10 +28,10 @@ It's a dark, animated, multi-page static site with **no framework and no build s
 ## Features
 
 - **Interactive skills knowledge graph**: a live physics simulation written from scratch (no graph library). Drag nodes, hover to see where a skill was used, click a category to hide it.
-- **Serverless contact form**: Google Apps Script emails each message to you and sends the visitor a confirmation. No backend server, and visitors don't sign in.
+- **Serverless contact form**: the form posts to this site's own `api/contact.js`, which checks it and forwards it to a Google Apps Script that emails each message to you and sends the visitor a confirmation. The browser never talks to Google, so the visitor's IP stays on this site. Visitors don't sign in.
 - **Live LeetCode stat**: a small Vercel serverless function (`api/leetcode.js`) reads the public solved counts and caches them for 3 minutes. The home page shows the total, the easy/medium/hard split and a colored ring, and links to the profile. If it can't reach LeetCode, the page keeps its built-in fallback numbers.
 - **"My side / your side" panel**: the owner's local time and weather next to the visitor's. The browser only talks to this site: `api/weather.js` asks [Open-Meteo](https://open-meteo.com) server-side, so the visitor's IP address is never sent to a third party. No API key and no location prompt.
-- **Privacy and security by default**: no cookies, analytics or third-party requests on page load (fonts are self-hosted), a strict Content-Security-Policy plus HSTS and Permissions-Policy in `vercel.json`, and `/.well-known/security.txt`.
+- **Privacy and security by default**: no cookies, analytics or third-party requests from the visitor's browser (fonts are self-hosted, and weather and the contact form go through this site's own functions), a strict Content-Security-Policy plus HSTS and Permissions-Policy in `vercel.json`, and `/.well-known/security.txt`.
 - **GSAP motion**: page-wipe transitions, decode-text intro, scroll reveals, magnetic buttons, 3D card tilt.
 - **Clean URLs** (`/projects`, `/skills`) that work on Vercel and any static server.
 - **Search and AI-search ready**: a unique title and description per page, OpenGraph and Twitter cards, JSON-LD structured data, `sitemap.xml`, `robots.txt`, and an `llms.txt` summary for AI tools.
@@ -54,7 +54,7 @@ Then open **http://localhost:8000**.
 
 > Open it through a local server like the one above, not by double-clicking `index.html`. The pages use root paths (`/assets/...`) that only resolve when served.
 >
-> A plain static server doesn't run `api/leetcode.js` or `api/weather.js`, so locally the LeetCode stat shows its fallback numbers and the weather shows a dash. To test the live version, use [`vercel dev`](https://vercel.com/docs/cli/dev) or check the deployed site.
+> A plain static server doesn't run `api/leetcode.js`, `api/weather.js` or `api/contact.js`, so locally the LeetCode stat shows its fallback numbers, the weather shows a dash and the contact form can't send. To test the live version, use [`vercel dev`](https://vercel.com/docs/cli/dev) or check the deployed site.
 
 ---
 
@@ -73,7 +73,8 @@ Then open **http://localhost:8000**.
 ├── .well-known/security.txt        # How to report a security issue
 ├── api/
 │   ├── leetcode.js                 # Serverless function: live LeetCode counts (Vercel)
-│   └── weather.js                  # Serverless function: weather proxy, keeps visitor IPs from Open-Meteo
+│   ├── weather.js                  # Serverless function: weather proxy, keeps visitor IPs from Open-Meteo
+│   └── contact.js                  # Serverless function: checks the contact form, rate-limits per IP, forwards to the Apps Script
 ├── assets/
 │   ├── css/
 │   │   ├── main.css                # All styles; colour tokens are at the top
@@ -89,7 +90,7 @@ Then open **http://localhost:8000**.
 │   │   ├── leetcode-stat.js        # Home page: fills the LeetCode stat from /api/leetcode
 │   │   ├── skills-data.js          # Skills content (graph + list read from here)
 │   │   ├── skills-graph.js         # Knowledge graph engine
-│   │   └── contact-form.js         # Form validation + sending
+│   │   └── contact-form.js         # Form validation + posting to /api/contact
 │   ├── fonts/                      # Self-hosted Inter, JetBrains Mono, Space Grotesk (SIL OFL)
 │   ├── vendor/                     # GSAP + ScrollTrigger
 │   ├── images/                     # Favicons, app icons, social preview image
@@ -121,6 +122,7 @@ The text, résumé and branding in this repo belong to Rayner Dcunha (see [Licen
 | Colours | CSS variables at the top of `assets/css/main.css` |
 | Logo / favicon | `assets/images/rd-logo.svg`, `favicon-32.png`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, and `favicon.ico` in the root |
 | LeetCode username (live stat) | `USERNAME` at the top of `api/leetcode.js`; the fallback numbers are in `index.html` |
+| Contact form destination | the `CONTACT_SCRIPT_URL` environment variable in Vercel (see below); the form itself posts to `/api/contact` |
 | Your city for time/weather | `ME` (time zone and name) at the top of `assets/js/time-weather.js`, and `ME` (coordinates) at the top of `api/weather.js` |
 | Site URL | `canonical` / `og:` / `twitter:` tags and the JSON-LD block in each page, `sitemap.xml`, `robots.txt`, `llms.txt` |
 
@@ -134,11 +136,13 @@ The taskbar is copied into each page. If you add or rename a page, update it in 
 2. Paste in everything from `google-apps-script/contact-form-receiver.gs`. Set `OWNER_NAME`, `SITE_URL` and (optionally) `DELIVER_TO` at the top, then **Save**.
 3. **Deploy → New deployment →** gear icon **→ Web app**. Set Execute as **Me** and Who has access **Anyone**, then **Deploy**.
 4. Click **Authorize**, choose your account, then **Advanced → Go to project → Allow**. Google shows this warning because the script is your own and unverified, which is expected.
-5. Copy the **Web app URL** (it ends in `/exec`) into the form's `action="..."` in `contact/index.html`.
+5. Copy the **Web app URL** (it ends in `/exec`). Don't put it in the page: in Vercel, open your project, go to **Settings → Environment Variables**, add `CONTACT_SCRIPT_URL` with that URL for Production, then redeploy. The form posts to `/api/contact`, which reads the variable and forwards the message.
 
 When you edit the script later, go to **Deploy → Manage deployments → Edit → New version**. The URL stays the same.
 
-The script has a spam trap and rate limits built in: one message per sender every 2 minutes, and a daily cap. Until the URL is set, the form falls back to opening the visitor's email app.
+**Keep the Web app URL private.** Anyone who has it can post to your script, so keep it only in the Vercel environment variable, never in a file, commit, screenshot or issue. If it ever leaks (or you committed it by mistake), go to **Deploy → Manage deployments**, archive that deployment, create a **New deployment**, and put the new URL in `CONTACT_SCRIPT_URL`. Removing a URL from a file does not remove it from Git history, so replacing the deployment is the real fix.
+
+The script has a spam trap and rate limits built in: one message per sender every 2 minutes, and a daily cap. `api/contact.js` adds its own checks first: same-site requests only, field length limits, a spam trap, and 5 messages per hour per IP address (kept in memory, so it is a light limit, not a hard one). The visitor's IP is never forwarded to the script. If `CONTACT_SCRIPT_URL` is missing, the form shows an error with your fallback email address.
 
 ---
 
@@ -151,9 +155,9 @@ The script has a spam trap and rate limits built in: one message per sender ever
    - **Build Command:** *(empty)*
    - **Output Directory:** *(empty)*
    - **Install Command:** *(empty)*
-4. Click **Deploy**. After that, every push to `main` redeploys automatically.
+4. Add the `CONTACT_SCRIPT_URL` environment variable (see the contact form section), then click **Deploy**. After that, every push to `main` redeploys automatically.
 
-Any other static host (Netlify, GitHub Pages, Cloudflare Pages) works too, but only Vercel runs `api/leetcode.js` and `api/weather.js`; elsewhere the LeetCode stat shows its fallback numbers and the weather shows a dash. `vercel.json` only adds Vercel-specific extras.
+Any other static host (Netlify, GitHub Pages, Cloudflare Pages) works too, but only Vercel runs `api/leetcode.js`, `api/weather.js` and `api/contact.js`; elsewhere the LeetCode stat shows its fallback numbers, the weather shows a dash and the contact form cannot send. `vercel.json` only adds Vercel-specific extras.
 
 ---
 
