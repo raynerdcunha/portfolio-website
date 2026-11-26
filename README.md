@@ -102,8 +102,8 @@ Then open **http://localhost:8000**.
 ├── docs/readme-banner.svg          # README banner
 ├── LICENSE                         # MIT license (code)
 ├── NOTICE.md                       # What the license does and doesn't cover
-├── NOTES.md                        # Why the site is built this way
-├── SECURITY.md, CONTRIBUTING.md, CODE_OF_CONDUCT.md
+├── SECURITY.md, CONTRIBUTING.md       # Security policy and design notes; how the project is built
+├── CODE_OF_CONDUCT.md
 ├── .github/                        # Issue and pull request templates
 ├── vercel.json                     # Clean URLs, security headers, caching
 ├── .vercelignore                   # Keeps the script, docs and repo-only files out of the deploy
@@ -170,7 +170,7 @@ Any other static host (Netlify, GitHub Pages, Cloudflare Pages) works too, but o
 
 ## Notes
 
-See [NOTES.md](NOTES.md) for why the site is built the way it is.
+See [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md) for why the site is built the way it is.
 
 - `api/weather.js` and `api/leetcode.js` time out slow upstream calls and reject unknown query parameters with a 400, so adding `?x=1` can't be used to bypass the cache.
 - Designed for laptop and desktop screens; phones get a basic stacked layout.
