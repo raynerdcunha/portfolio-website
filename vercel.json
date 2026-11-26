@@ -9,6 +9,10 @@
     {
       "source": "/api/((?!(?:contact|leetcode|weather)$).+)",
       "destination": "/api/not-found"
+    },
+    {
+      "source": "/api",
+      "destination": "/api/not-found"
     }
   ],
   "headers": [
