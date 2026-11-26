@@ -76,7 +76,7 @@ Then open **http://localhost:8000**.
 │   ├── leetcode.js                 # Serverless function: live LeetCode counts (Vercel)
 │   ├── weather.js                  # Serverless function: weather proxy, keeps visitor IPs from Open-Meteo
 │   ├── contact.js                  # Serverless function: checks the contact form, rate-limits per IP, forwards to the Apps Script
-│   └── [...path].js                # Any other /api/ address: shows the 404 page with a real 404 status
+│   └── not-found.js                # Any other /api/ address: shows the 404 page with a real 404 status
 ├── assets/
 │   ├── css/
 │   │   ├── main.css                # All styles; colour tokens are at the top
