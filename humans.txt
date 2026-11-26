@@ -1,0 +1,10 @@
+/* TEAM */
+Name: Rayner Dcunha
+Role: Design and development
+Site: https://www.raynerdcunha.com
+GitHub: https://github.com/raynerdcunha
+
+/* SITE */
+Built with: HTML, CSS, JavaScript, GSAP
+Hosting: Vercel
+Source: https://github.com/raynerdcunha/portfolio-website

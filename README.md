@@ -68,6 +68,7 @@ Then open **http://localhost:8000**.
 ├── contact/index.html              # Contact form + links
 ├── 404.html                        # "Lost in the Domain?"
 ├── robots.txt, sitemap.xml         # Search engine hints
+├── humans.txt                      # Who made the site
 ├── llms.txt                        # Plain-text site summary for AI tools
 ├── favicon.ico, site.webmanifest   # Icons for browsers and phones
 ├── .well-known/security.txt        # How to report a security issue
@@ -98,9 +99,12 @@ Then open **http://localhost:8000**.
 ├── google-apps-script/
 │   └── contact-form-receiver.gs    # Contact form backend (runs on script.google.com)
 ├── docs/readme-banner.svg          # README banner
-├── LICENSE                         # MIT (code) + content copyright
+├── LICENSE                         # MIT license (code)
+├── NOTICE.md                       # What the license does and doesn't cover
+├── SECURITY.md, CONTRIBUTING.md, CODE_OF_CONDUCT.md
+├── .github/                        # Issue and pull request templates
 ├── vercel.json                     # Clean URLs, security headers, caching
-├── .vercelignore                   # Keeps the script, docs + README out of the deploy
+├── .vercelignore                   # Keeps the script, docs and repo-only files out of the deploy
 └── .gitignore                      # Files Git should skip
 ```
 
@@ -142,7 +146,7 @@ When you edit the script later, go to **Deploy → Manage deployments → Edit �
 
 **Keep the Web app URL private.** Anyone who has it can post to your script, so keep it only in the Vercel environment variable, never in a file, commit, screenshot or issue. If it ever leaks (or you committed it by mistake), go to **Deploy → Manage deployments**, archive that deployment, create a **New deployment**, and put the new URL in `CONTACT_SCRIPT_URL`. Removing a URL from a file does not remove it from Git history, so replacing the deployment is the real fix.
 
-The script has a spam trap and rate limits built in: one message per sender every 2 minutes, and a daily cap. `api/contact.js` adds its own checks first: same-site requests only, field length limits, a spam trap, and 5 messages per hour per IP address (kept in memory, so it is a light limit, not a hard one). The visitor's IP is never forwarded to the script. If `CONTACT_SCRIPT_URL` is missing, the form shows an error with your fallback email address.
+The script has a spam trap and rate limits built in: one message per sender every 2 minutes, and a daily cap. `api/contact.js` adds its own checks first: same-site requests only, field length limits, a spam trap, and 5 messages per hour per IP address (kept in memory, so it is a light limit, not a hard one). The visitor's IP is never forwarded to the script. If `CONTACT_SCRIPT_URL` is missing, the form shows an error with your fallback email address. The function answers with real status codes: 400 for bad input, 429 for too many messages, 502 when the script can't be reached or refuses the message, and 503 when the variable is missing.
 
 ---
 
@@ -156,6 +160,7 @@ The script has a spam trap and rate limits built in: one message per sender ever
    - **Output Directory:** *(empty)*
    - **Install Command:** *(empty)*
 4. Add the `CONTACT_SCRIPT_URL` environment variable (see the contact form section), then click **Deploy**. After that, every push to `main` redeploys automatically.
+5. If you also have an apex domain or a `.vercel.app` address, open **Settings → Domains**, edit it and choose **Redirect to** your main domain with a **308** status, so search engines see one site.
 
 Any other static host (Netlify, GitHub Pages, Cloudflare Pages) works too, but only Vercel runs `api/leetcode.js`, `api/weather.js` and `api/contact.js`; elsewhere the LeetCode stat shows its fallback numbers, the weather shows a dash and the contact form cannot send. `vercel.json` only adds Vercel-specific extras.
 
@@ -163,6 +168,7 @@ Any other static host (Netlify, GitHub Pages, Cloudflare Pages) works too, but o
 
 ## Notes
 
+- `api/weather.js` and `api/leetcode.js` time out slow upstream calls and reject unknown query parameters with a 400, so adding `?x=1` can't be used to bypass the cache.
 - Designed for laptop and desktop screens; phones get a basic stacked layout.
 - Visitors who turn on the OS "reduce motion" setting get no animations: content shows immediately and the terminal and background are static (checked in `motion.js`, `site-shell.js`, `project-effects.js` and `space-network.js`).
 
@@ -170,7 +176,7 @@ Any other static host (Netlify, GitHub Pages, Cloudflare Pages) works too, but o
 
 ## License
 
-- **Code** (HTML, CSS, JavaScript and the Apps Script): [MIT License](LICENSE). You're free to use, modify and share it.
+- **Code** (HTML, CSS, JavaScript and the Apps Script): [MIT License](LICENSE). You're free to use, modify and share it. See [NOTICE.md](NOTICE.md) for exactly what it covers.
 - **Personal content**: the name, biography, experience, project descriptions, résumé, photos and "Rayner's Domain" / RD branding are **© 2026 Rayner Dcunha. All rights reserved.** They are not covered by the MIT License. Please replace them with your own.
 - **GSAP** in `assets/vendor/` is © GreenSock and is used under the [GSAP Standard License](https://gsap.com/standard-license), not the MIT License.
 
