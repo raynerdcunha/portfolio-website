@@ -19,6 +19,7 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
   try {
+    if (Object.keys(req.query || {}).length) return res.status(400).json({ error: 'Invalid query' });
     const r = await fetch('https://leetcode.com/graphql', {
       method: 'POST',
       headers: {
@@ -26,13 +27,14 @@ module.exports = async function handler(req, res) {
         'Referer': 'https://leetcode.com/u/' + USERNAME + '/',
         'User-Agent': 'Mozilla/5.0 (compatible; portfolio-stats)'
       },
-      body: JSON.stringify({ query: QUERY, variables: { username: USERNAME } })
+      body: JSON.stringify({ query: QUERY, variables: { username: USERNAME } }),
+      signal: AbortSignal.timeout(8000)
     });
     if (!r.ok) throw new Error('LeetCode responded ' + r.status);
 
     const json = await r.json();
-    const rows = json && json.data && json.data.matchedUser &&
-      json.data.matchedUser.submitStatsGlobal.acSubmissionNum;
+    const user = json && json.data && json.data.matchedUser;
+    const rows = user && user.submitStatsGlobal && user.submitStatsGlobal.acSubmissionNum;
     if (!Array.isArray(rows)) throw new Error('Unexpected response shape');
 
     const pick = (d) => (rows.find((x) => x.difficulty === d) || {}).count;

@@ -15,7 +15,7 @@
 
 - [FlameoShell](https://github.com/raynerdcunha/flameoshell): a Unix-like shell written in C (fork/execve, pipes, I/O redirection, job control, signal handling) with a browser-based demo
 - [Badgepath](https://badge-path.vercel.app): a zero-dependency Node.js web app that shows which GitHub achievements a public profile has earned and estimates progress toward higher tiers ([source](https://github.com/raynerdcunha/badge-path))
-- [IEEE 33-Bus Grid Dashboard](https://www.mdpi.com/4118630): a Graph-Transformer that screens 50,751 candidate grid topologies in one pass (83 minutes down to 48 seconds, 103x faster), with a live-chart dashboard
+- [IEEE 33-Bus Grid Dashboard](https://www.mdpi.com/4118630): a Graph-Transformer that screens 50,751 candidate grid topologies in one pass (an estimated 83 minutes down to 48 seconds, 103x faster), with a live-chart dashboard
 - [Omakase or Not?](https://github.com/raynerdcunha/omakase-or-not): an Android game (Kotlin, Jetpack Compose) that settles where to eat with three randomized outcomes
 
 ## Profiles

@@ -5,9 +5,25 @@
 
 const ME = { name: 'Edmonton', country: 'CA', lat: 53.5461, lon: -113.4938 };
 const PLACE_RE = /^[\p{L}][\p{L} .'’-]{0,59}$/u;
+const ALLOWED = new Set(['me', 'place']);
+const TTL_MS = 10 * 60 * 1000;
+const MAX_ENTRIES = 200;
+const memo = new Map();
+
+function remember(key, value) {
+  if (memo.size >= MAX_ENTRIES) memo.delete(memo.keys().next().value);
+  memo.set(key, { value, at: Date.now() });
+}
+
+function recall(key) {
+  const hit = memo.get(key);
+  if (hit && Date.now() - hit.at < TTL_MS) return hit.value;
+  memo.delete(key);
+  return null;
+}
 
 async function getJSON(url) {
-  const r = await fetch(url, { headers: { 'User-Agent': 'portfolio-weather-proxy' } });
+  const r = await fetch(url, { headers: { 'User-Agent': 'portfolio-weather-proxy' }, signal: AbortSignal.timeout(6000) });
   if (!r.ok) throw new Error('upstream ' + r.status);
   return r.json();
 }
@@ -27,6 +43,13 @@ module.exports = async function handler(req, res) {
   }
   try {
     const q = req.query || {};
+    if (Object.keys(q).some((k) => !ALLOWED.has(k))) return res.status(400).json({ error: 'Invalid query' });
+    const key = q.me ? 'me' : typeof q.place === 'string' ? q.place.trim().toLowerCase() : '';
+    const cached = key && recall(key);
+    if (cached) {
+      res.setHeader('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=1800');
+      return res.status(200).json(cached);
+    }
     let place = ME;
     if (!q.me) {
       const name = typeof q.place === 'string' ? q.place.trim() : '';
@@ -37,8 +60,10 @@ module.exports = async function handler(req, res) {
       place = { name: hit.name, country: hit.country_code || '', lat: hit.latitude, lon: hit.longitude };
     }
     const w = await current(place.lat, place.lon);
+    const out = { name: place.name, country: place.country, temp: w.temp, code: w.code, isDay: w.isDay };
+    remember(key, out);
     res.setHeader('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=1800');
-    return res.status(200).json({ name: place.name, country: place.country, temp: w.temp, code: w.code, isDay: w.isDay });
+    return res.status(200).json(out);
   } catch (e) {
     res.setHeader('Cache-Control', 'public, s-maxage=60');
     return res.status(502).json({ error: 'Weather unavailable' });

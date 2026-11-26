@@ -51,13 +51,13 @@ module.exports = async function handler(req, res) {
   const clean = {};
   for (const key of Object.keys(LIMITS)) {
     const value = body[key];
-    if (typeof value !== 'string') return res.status(200).json({ ok: false, error: 'missing_fields' });
+    if (typeof value !== 'string') return res.status(400).json({ ok: false, error: 'missing_fields' });
     clean[key] = value.trim().slice(0, LIMITS[key]);
-    if (!clean[key]) return res.status(200).json({ ok: false, error: 'missing_fields' });
+    if (!clean[key]) return res.status(400).json({ ok: false, error: 'missing_fields' });
   }
-  if (!EMAIL_RE.test(clean.email)) return res.status(200).json({ ok: false, error: 'bad_email' });
+  if (!EMAIL_RE.test(clean.email)) return res.status(400).json({ ok: false, error: 'bad_email' });
 
-  if (tooMany(clientIp(req))) return res.status(200).json({ ok: false, error: 'too_many' });
+  if (tooMany(clientIp(req))) return res.status(429).json({ ok: false, error: 'too_many' });
 
   try {
     const upstream = await fetch(target, {
@@ -66,8 +66,11 @@ module.exports = async function handler(req, res) {
       signal: AbortSignal.timeout(9000)
     });
     const data = await upstream.json();
-    return res.status(200).json({ ok: data && data.ok === true, error: data && data.error ? String(data.error) : undefined });
+    const ok = Boolean(data && data.ok === true);
+    const error = data && data.error ? String(data.error) : undefined;
+    const limited = error === 'slow_down' || error === 'daily_limit';
+    return res.status(ok ? 200 : limited ? 429 : 502).json({ ok, error });
   } catch (e) {
-    return res.status(200).json({ ok: false, error: 'unavailable' });
+    return res.status(502).json({ ok: false, error: 'unavailable' });
   }
 };

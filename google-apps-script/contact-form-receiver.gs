@@ -89,7 +89,7 @@ function doPost(e) {
         name: OWNER_NAME,
         subject: 'Thanks for reaching out — ' + OWNER_NAME,
         body:
-          'Hi ' + name + ',\n\n' +
+          'Hi,\n\n' +
           'Thanks for your message through my portfolio — it has reached my inbox and I\'ll get back to you soon.\n\n' +
           'Best,\n' + OWNER_NAME + '\n' + SITE_URL + '\n\n' +
           '(This is an automatic confirmation. If you didn\'t send a message, you can ignore this email.)'
