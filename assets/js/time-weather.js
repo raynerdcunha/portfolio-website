@@ -26,6 +26,13 @@
     return new Intl.DateTimeFormat('en-CA', { timeZone: tz, weekday: 'short', month: 'short', day: 'numeric' }).format(new Date());
   }
   function offsetMinutes(tz) {
+    try {
+      var part = new Intl.DateTimeFormat('en-US', { timeZone: tz, timeZoneName: 'longOffset' }).formatToParts(new Date())
+        .filter(function (p) { return p.type === 'timeZoneName'; })[0];
+      var m = part && /GMT([+\-\u2212])(\d{1,2})(?::(\d{2}))?/.exec(part.value);
+      if (m) return (m[1] === '+' ? 1 : -1) * (Number(m[2]) * 60 + Number(m[3] || 0));
+      if (part && part.value === 'GMT') return 0;
+    } catch (e) {}
     var now = new Date();
     var local = new Date(now.toLocaleString('en-US', { timeZone: tz }));
     var utc = new Date(now.toLocaleString('en-US', { timeZone: 'UTC' }));
@@ -45,9 +52,10 @@
   var gap = panel.querySelector('[data-part="gap"]');
   if (diff === 0) gap.textContent = 'Same time zone as me';
   else {
-    var h = Math.abs(diff) / 60;
-    var hs = (h % 1 === 0 ? h : h.toFixed(1)) + (h === 1 ? ' hour' : ' hours');
-    gap.textContent = 'You\'re ' + hs + (diff > 0 ? ' ahead' : ' behind');
+    var abs = Math.abs(diff), hrs = Math.floor(abs / 60), mins = abs % 60, bits = [];
+    if (hrs) bits.push(hrs + (hrs === 1 ? ' hour' : ' hours'));
+    if (mins) bits.push(mins + (mins === 1 ? ' minute' : ' minutes'));
+    gap.textContent = 'You\'re ' + bits.join(' ') + (diff > 0 ? ' ahead' : ' behind');
   }
 
   /* ---------- Visitor city from time zone ---------- */

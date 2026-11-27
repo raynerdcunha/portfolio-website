@@ -28,6 +28,7 @@
     links.forEach(function (l) { l.addEventListener('mouseenter', function () { moveTo(l); }); });
     nav.addEventListener('mouseleave', function () { moveTo(current); });
     moveTo(current);
+    if (current && nav.scrollWidth > nav.clientWidth) nav.scrollLeft = Math.max(0, current.offsetLeft - 16);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { moveTo(current); });
     window.addEventListener('resize', function () { moveTo(current); });
   }

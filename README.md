@@ -148,6 +148,8 @@ When you edit the script later, go to **Deploy → Manage deployments → Edit �
 
 **Keep the Web app URL private.** Anyone who has it can post to your script, so keep it only in the Vercel environment variable, never in a file, commit, screenshot or issue. If it ever leaks (or you committed it by mistake), go to **Deploy → Manage deployments**, archive that deployment, create a **New deployment**, and put the new URL in `CONTACT_SCRIPT_URL`. Removing a URL from a file does not remove it from Git history, so replacing the deployment is the real fix.
 
+**Optional shared secret.** For one more check, open the Apps Script project, go to **Project Settings → Script properties** and add `SHARED_SECRET` with a long random value. Add the same value in Vercel as `CONTACT_SHARED_SECRET`. `api/contact.js` then sends it with every message, and the script rejects any post that doesn't carry it. Redeploy both after changing either one. If you leave `SHARED_SECRET` unset, the script skips this check.
+
 The script has a spam trap and rate limits built in: one message per sender every 2 minutes, and a daily cap. `api/contact.js` adds its own checks first: same-site requests only, field length limits, a spam trap, and 5 messages per hour per IP address (kept in memory, so it is a light limit, not a hard one). The visitor's IP is never forwarded to the script. If `CONTACT_SCRIPT_URL` is missing, the form shows an error with your fallback email address. The function answers with real status codes: 400 for bad input, 429 for too many messages, 502 when the script can't be reached or refuses the message, and 503 when the variable is missing.
 
 ---
@@ -173,7 +175,7 @@ Any other static host (Netlify, GitHub Pages, Cloudflare Pages) works too, but o
 See [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md) for why the site is built the way it is.
 
 - `api/weather.js` and `api/leetcode.js` time out slow upstream calls and reject unknown query parameters with a 400, so adding `?x=1` can't be used to bypass the cache.
-- Designed for laptop and desktop screens; phones get a basic stacked layout.
+- Designed for laptop and desktop screens; phones get a stacked layout, and the top bar scrolls sideways with the résumé link shrunk to an icon.
 - Visitors who turn on the OS "reduce motion" setting get no animations: content shows immediately and the terminal and background are static (checked in `motion.js`, `site-shell.js`, `project-effects.js` and `space-network.js`).
 
 ---

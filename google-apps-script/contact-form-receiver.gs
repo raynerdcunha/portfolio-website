@@ -34,8 +34,11 @@ const DAILY_LIMIT = 40;           // max messages per day (protects your Gmail s
 const TIME_ZONE = 'America/Edmonton';
 
 function doPost(e) {
+  let lock = null;
   try {
     const p = (e && e.parameter) || {};
+    const secret = PropertiesService.getScriptProperties().getProperty('SHARED_SECRET');
+    if (secret && p.token !== secret) return json({ ok: false, error: 'forbidden' });
 
     // Spam trap: real people never fill in this hidden field.
     if (p._gotcha) return json({ ok: true });
@@ -48,6 +51,9 @@ function doPost(e) {
     if (!name || !email || !subject || !message) return json({ ok: false, error: 'missing_fields' });
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return json({ ok: false, error: 'bad_email' });
 
+    lock = LockService.getScriptLock();
+    if (!lock.tryLock(10000)) return json({ ok: false, error: 'busy' });
+
     // Rate limits: one message per email address every 2 minutes, plus a daily cap.
     const cache = CacheService.getScriptCache();
     const senderKey = 'sender:' + email.toLowerCase();
@@ -57,6 +63,7 @@ function doPost(e) {
     const dayKey = 'count:' + Utilities.formatDate(new Date(), TIME_ZONE, 'yyyy-MM-dd');
     const sentToday = Number(props.getProperty(dayKey) || 0);
     if (sentToday >= DAILY_LIMIT) return json({ ok: false, error: 'daily_limit' });
+    cache.put(senderKey, '1', 120);
 
     const me = Session.getEffectiveUser().getEmail();   // the website account running this script
     const inbox = DELIVER_TO || me;
@@ -96,12 +103,15 @@ function doPost(e) {
       });
     }
 
-    cache.put(senderKey, '1', 120);
     props.setProperty(dayKey, String(sentToday + 1));
     return json({ ok: true });
   } catch (err) {
     console.error(err);
     return json({ ok: false, error: 'server_error' });
+  } finally {
+    if (lock) {
+      try { lock.releaseLock(); } catch (x) {}
+    }
   }
 }
 

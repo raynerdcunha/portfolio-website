@@ -9,6 +9,9 @@ const ALLOWED = new Set(['me', 'place']);
 const TTL_MS = 10 * 60 * 1000;
 const MAX_ENTRIES = 200;
 const memo = new Map();
+const hits = new Map();
+const HIT_WINDOW_MS = 10 * 60 * 1000;
+const MAX_LOOKUPS = 20;
 
 function remember(key, value) {
   if (memo.size >= MAX_ENTRIES) memo.delete(memo.keys().next().value);
@@ -20,6 +23,26 @@ function recall(key) {
   if (hit && Date.now() - hit.at < TTL_MS) return hit.value;
   memo.delete(key);
   return null;
+}
+
+function lookupLimited(ip) {
+  const now = Date.now();
+  for (const [key, list] of hits) {
+    const fresh = list.filter((t) => now - t < HIT_WINDOW_MS);
+    if (fresh.length) hits.set(key, fresh);
+    else hits.delete(key);
+  }
+  const list = hits.get(ip) || [];
+  if (list.length >= MAX_LOOKUPS) return true;
+  list.push(now);
+  hits.set(ip, list);
+  return false;
+}
+
+function clientIp(req) {
+  const forwarded = req.headers['x-forwarded-for'];
+  if (typeof forwarded === 'string' && forwarded) return forwarded.split(',')[0].trim();
+  return String(req.headers['x-real-ip'] || 'unknown');
 }
 
 async function getJSON(url) {
@@ -42,6 +65,7 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
   try {
+    if (req.headers['sec-fetch-site'] === 'cross-site') return res.status(403).json({ error: 'Forbidden' });
     const q = req.query || {};
     if (Object.keys(q).some((k) => !ALLOWED.has(k))) return res.status(400).json({ error: 'Invalid query' });
     const key = q.me ? 'me' : typeof q.place === 'string' ? q.place.trim().toLowerCase() : '';
@@ -52,6 +76,7 @@ module.exports = async function handler(req, res) {
     }
     let place = ME;
     if (!q.me) {
+      if (lookupLimited(clientIp(req))) return res.status(429).json({ error: 'Too many requests' });
       const name = typeof q.place === 'string' ? q.place.trim() : '';
       if (!PLACE_RE.test(name)) return res.status(400).json({ error: 'Invalid place' });
       const g = await getJSON('https://geocoding-api.open-meteo.com/v1/search?count=1&language=en&format=json&name=' + encodeURIComponent(name));

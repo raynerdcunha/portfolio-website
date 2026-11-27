@@ -59,6 +59,8 @@ module.exports = async function handler(req, res) {
 
   if (tooMany(clientIp(req))) return res.status(429).json({ ok: false, error: 'too_many' });
 
+  if (process.env.CONTACT_SHARED_SECRET) clean.token = process.env.CONTACT_SHARED_SECRET;
+
   try {
     const upstream = await fetch(target, {
       method: 'POST',
