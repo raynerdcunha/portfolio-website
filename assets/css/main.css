@@ -676,6 +676,9 @@ code { font-family: var(--font-mono); font-size: 0.86em; color: var(--cyan); }
 @media (max-width: 400px) {
   .home, .exp, .contact, .skills-layout { grid-template-columns: minmax(0, 1fr); }
   .tz-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .timeline { padding-left: 26px; }
+  .job { padding: 20px; }
+  .job__top { flex-wrap: wrap; gap: 4px 12px; }
   .hud { letter-spacing: 0.08em; flex-wrap: wrap; }
   .home__name { font-size: clamp(2.6rem, 14vw, 3.6rem); }
 }
